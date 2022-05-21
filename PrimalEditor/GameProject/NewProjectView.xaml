@@ -14,7 +14,7 @@
 
     <StackPanel Background="White">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <ListBox Width="195" Height="250" ItemsSource="{Binding ProjectTemplates}" x:Name="TemplateListBox"
+            <ListBox Width="195" Height="250" ItemsSource="{Binding ProjectTemplates}" x:Name="templateListBox"
                      SelectedIndex="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -28,7 +28,7 @@
 
             <Border Width="400" Height="250" Margin="5,0,0,0">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=TemplateListBox}"/>
+                    <ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=templateListBox}"/>
                 </Border.Background>
             </Border>
         </StackPanel>
@@ -36,21 +36,24 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                     Margin="0,30,0,0">
             <TextBlock Text="Name" Width="50" />
-            <TextBox Width="550" Text="{Binding ProjectName}" />
+            <TextBox Width="550" Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                     Margin="0,5,0,0">
             <TextBlock Text="Path" Width="50" />
-            <TextBox Width="500" Text="{Binding ProjectPath}" />
+            <TextBox Width="500" Text="{Binding ProjectPath, UpdateSourceTrigger=PropertyChanged}" />
             <Button Content="Browse" Width="45" Margin="5,0,0,0" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                     Margin="0,30,0,0">
-            <Button Content="Create" Width="96" IsDefault="True" />
+            <Button Content="Create" Width="96" IsDefault="True" IsEnabled="{Binding IsValid}"
+                    Click="On_Create_Button_Click"/>
             <Button Content="Exit" Width="96" Margin="30,0,0,0" IsCancel="True" />
         </StackPanel>
+
+        <TextBlock Text="{Binding ErrorMsg}" Margin="0,20,0,0" HorizontalAlignment="Center" Foreground="Red" />
 
     </StackPanel>
 </UserControl>
