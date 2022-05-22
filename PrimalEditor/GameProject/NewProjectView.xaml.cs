@@ -13,7 +13,7 @@ namespace PrimalEditor.GameProject
             InitializeComponent();
         }
 
-        private void On_Create_Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void On_Create_Button_Click(object sender, RoutedEventArgs e)
         {
             var vm = DataContext as NewProject;
             var projectPath = vm.CreateProject(templateListBox.SelectedItem as ProjectTemplate);
@@ -23,6 +23,8 @@ namespace PrimalEditor.GameProject
             if (!string.IsNullOrEmpty(projectPath))
             {
                 dialogResult = true;
+                var project = OpenProject.Open(new ProjectData() { ProjectName = vm.ProjectName, ProjectPath = projectPath });
+                win.DataContext = project;
             }
 
             win.DialogResult = dialogResult;

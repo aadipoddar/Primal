@@ -4,8 +4,10 @@
       xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
   <Name>{0}</Name>
   <Path>{1}</Path>
+  <ActiveScene z:Ref="i2" />
   <Scenes>
     <Scene z:Id="i2">
+      <IsActive>true</IsActive>
       <Name>Default Scene</Name>
       <Project z:Ref="i1"/>
     </Scene>
