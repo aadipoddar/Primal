@@ -7,19 +7,19 @@ namespace PrimalEditor.Utilities
 {
     public static class Serializer
     {
-        /* used to write to file */
-        public static void ToFile<T>(T Instance, string path)
+        public static void ToFile<T>(T instance, string path)
         {
             try
             {
                 using var fs = new FileStream(path, FileMode.Create);
                 var Serializer = new DataContractSerializer(typeof(T));
-                Serializer.WriteObject(fs, Instance);
+                Serializer.WriteObject(fs, instance);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODOL: update log
+                Logger.Log(MessageType.Error, $"Failed to serialize {instance} to {path}");
+                throw;
             }
         }
 
@@ -35,8 +35,8 @@ namespace PrimalEditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODOL: update log
-                return default(T);
+                Logger.Log(MessageType.Error, $"Failed to derserialize {path}");
+                throw;
             }
         }
     }

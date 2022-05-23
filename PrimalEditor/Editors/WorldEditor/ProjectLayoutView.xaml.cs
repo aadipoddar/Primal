@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using PrimalEditor.Components;
 using PrimalEditor.GameProject;
+using PrimalEditor.Utilities;
 
 namespace PrimalEditor.Editors
 {
@@ -37,8 +38,30 @@ namespace PrimalEditor.Editors
 
         private void OnGameEntities_ListBox_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            var entity = (sender as ListBox).SelectedItems[0];
-            GameEntityView.Instance.DataContext = entity;
+            GameEntityView.Instance.DataContext = null;
+            var ListBox = sender as ListBox;
+            if (e.AddedItems.Count > 0)
+            {
+                GameEntityView.Instance.DataContext = ListBox.SelectedItems[0];
+
+            }
+
+            var newSelection = ListBox.SelectedItems.Cast<GameEntity>().ToList();
+            var previousSelection = newSelection.Except(e.AddedItems.Cast<GameEntity>()).Concat(e.RemovedItems.Cast<GameEntity>()).ToList();
+
+            Project.UndoRedo.Add(new UndoRedoAction(
+                () =>
+                {
+                    ListBox.UnselectAll();
+                    previousSelection.ForEach(x => (ListBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                () =>
+                {
+                    ListBox.UnselectAll();
+                    newSelection.ForEach(x => (ListBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                "Selection Changed"
+                ));
         }
     }
 }

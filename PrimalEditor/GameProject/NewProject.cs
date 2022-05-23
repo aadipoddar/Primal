@@ -29,7 +29,7 @@ namespace PrimalEditor.GameProject
 
     class NewProject : ViewModelBase
     {
-        // TODO: get the path from the innstallation location
+        // TODO: get the path from the installation location
         private readonly string _templatePath = @"..\..\PrimalEditor\ProjectTemplates";
         private string _projectName = "NewProject";
 
@@ -171,8 +171,8 @@ namespace PrimalEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: Log error
-                return string.Empty;
+                Logger.Log(MessageType.Error, $"Failed to read project templates");
+                throw;
             }
         }
 
@@ -200,7 +200,8 @@ namespace PrimalEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
+                Logger.Log(MessageType.Error, $"Failed to read project templates");
+                throw;
             }
         }
     }
