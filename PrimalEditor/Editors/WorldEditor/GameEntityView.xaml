@@ -44,14 +44,15 @@
 
                 <TextBlock Text="Name" Grid.Column="0" Margin="5,0,0,0"/>
 
-                <TextBox Text="{Binding Name}" Grid.Column="1" Tag="{Binding RenameCommand}"/>
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=Explicit}" Grid.Column="1"
+                         GotKeyboardFocus="OnName_textBox_GotKeyboardFocus"
+                         LostKeyboardFocus="OnName_textBox_LostKeyboardFocus"/>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                     <TextBlock Text="Enabled" Margin="5,0,0,0"/>
 
-                    <CheckBox IsChecked="{Binding IsEnabled, Mode=OneWay}" 
-                              Command="{Binding IsEnableCommand}"
-                              CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                    <CheckBox IsChecked="{Binding IsEnabled , Mode=OneWay}" 
+                              Click="OnISEnabled_CheckBox_Click"
                               Margin="5,0" VerticalAlignment="Center"/>
                 </StackPanel>
             </Grid>
