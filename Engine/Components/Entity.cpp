@@ -45,7 +45,7 @@ namespace primal::game_entity {
 
 		// Create Transform Componnet
 		assert(!transforms[index].is_valid());
-		transforms[index] = transform::create_transfrom(*info.transform, new_entity);
+		transforms[index] = transform::create_transform(*info.transform, new_entity);
 		if (!transforms[index].is_valid())	return {};
 
 		return new_entity;

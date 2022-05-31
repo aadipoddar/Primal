@@ -12,7 +12,7 @@ namespace primal::transform {
 	} // Annonymous Namespace
 
 	component
-		create_transfrom(const init_info& info, game_entity::entity  entity)
+		create_transform(const init_info& info, game_entity::entity  entity)
 	{
 		assert(entity.is_valid());
 		const id::id_type entity_index{ id::index(entity.get_id()) };
