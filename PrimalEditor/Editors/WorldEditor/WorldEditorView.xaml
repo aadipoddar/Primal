@@ -26,46 +26,56 @@
         </StackPanel>
 
         <Grid Grid.Row="1">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
+
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Top"/>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                              Background="Transparent"/>
 
-                <TabControl Grid.Row="1">
-                    <TabItem Header="History">
-                        <utl:UndoRedoView DataContext="{Binding UndoRedo}"/>
+                <TabControl Grid.Row="1" Background="{StaticResource Editor.Window.GrayBrush2}"
+                            Margin="0,5,0,0">
+
+                    <TabItem Name="UndoRedo" Header="History">
+                        <utl:UndoRedoView DataContext="{Binding UndoRedo}" />
                     </TabItem>
-                    
-                    <TabItem Header="Log">
+
+                    <TabItem Name="Log" Header="Log">
                         <utl:LoggerView/>
                     </TabItem>
+
                 </TabControl>
+
             </Grid>
 
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" 
-                          VerticalAlignment="Stretch" />
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
 
-            <Grid Grid.Column="1" Margin="5,0,0,0">
+            <Grid Grid.Column="1">
+
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Top"/>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                              Background="Transparent"/>
 
-                <local:ProjectLayoutView/>
-                <local:GameEntityView Grid.Row="1"/>
+                <local:ProjectLayoutView Background="{StaticResource Editor.Window.GrayBrush3}"/>
+
+                <local:GameEntityView Grid.Row="1" Background="{StaticResource Editor.Window.GrayBrush3}"
+                                      Margin="0,5,0,0"/>
+
             </Grid>
         </Grid>
     </Grid>
+
 </UserControl>
