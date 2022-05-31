@@ -15,8 +15,8 @@ namespace PrimalEditor.GameProject
 
             Loaded += (s, e) =>
             {
-                var item = projectListBox.ItemContainerGenerator
-                .ContainerFromItem(projectListBox.SelectedItem) as ListBoxItem;
+                var item = projectsListBox.ItemContainerGenerator
+                .ContainerFromItem(projectsListBox.SelectedItem) as ListBoxItem;
                 item?.Focus();
             };
         }
@@ -25,14 +25,14 @@ namespace PrimalEditor.GameProject
         {
             OpenSelectedProject();
         }
-        private void OnListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void OnListBoxItem_Mouse_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             OpenSelectedProject();
         }
 
         private void OpenSelectedProject()
         {
-            var project = OpenProject.Open(projectListBox.SelectedItem as ProjectData);
+            var project = OpenProject.Open(projectsListBox.SelectedItem as ProjectData);
             bool dialogResult = false;
             var win = Window.GetWindow(this);
 
