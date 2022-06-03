@@ -73,6 +73,7 @@ namespace PrimalEditor.Editors
 
         private void OnName_textBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
+            _propertyName = string.Empty;
             _undoAction = GetRenameAction();
         }
 

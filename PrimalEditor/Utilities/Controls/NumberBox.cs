@@ -45,25 +45,27 @@ namespace PrimalEditor.Utilities.Controls
             base.OnApplyTemplate();
             if (GetTemplateChild("PART_textBlock") is TextBlock textBlock)
             {
-                textBlock.MouseLeftButtonDown += OnTextBock_Mouse_LBD;
-                textBlock.MouseLeftButtonUp += OnTextBock_Mouse_LBU;
-                textBlock.MouseMove += OnTextBock_Mouse_Move;
+                textBlock.MouseLeftButtonDown += OnTextBlock_Mouse_LBD;
+                textBlock.MouseLeftButtonUp += OnTextBlock_Mouse_LBU;
+                textBlock.MouseMove += OnTextBlock_Mouse_Move;
             }
 
         }
-        private void OnTextBock_Mouse_LBD(object sender, MouseButtonEventArgs e)
+        private void OnTextBlock_Mouse_LBD(object sender, MouseButtonEventArgs e)
         {
             double.TryParse(Value, out _originalValue);
+
             Mouse.Capture(sender as UIElement);
             _captured = true;
             _valueChange = false;
             e.Handled = true;
-            _multiplier = 0.01;
 
             _mouseXStart = e.GetPosition(this).X;
+
+            Focus();
         }
 
-        private void OnTextBock_Mouse_LBU(object sender, MouseButtonEventArgs e)
+        private void OnTextBlock_Mouse_LBU(object sender, MouseButtonEventArgs e)
         {
             if (_captured)
             {
@@ -79,7 +81,7 @@ namespace PrimalEditor.Utilities.Controls
             }
         }
 
-        private void OnTextBock_Mouse_Move(object sender, MouseEventArgs e)
+        private void OnTextBlock_Mouse_Move(object sender, MouseEventArgs e)
         {
             if (_captured)
             {
