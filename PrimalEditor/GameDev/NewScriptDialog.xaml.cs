@@ -26,6 +26,8 @@ namespace PrimalEditor.GameDev
     {
 
         private static readonly string _cppCode = @"#include ""{0}.h""
+
+
 namespace {1}
 {{
 
@@ -44,6 +46,8 @@ namespace {1}
 }} // namespace {1}";
 
         private static readonly string _hCode = @"#pragma once
+
+
 namespace {1}
 {{
 
@@ -71,7 +75,7 @@ namespace {1}
             return projectName;
         }
 
-        bool Validate()
+        private bool Validate()
         {
             bool isValid = false;
             var name = scriptName.Text.Trim();
