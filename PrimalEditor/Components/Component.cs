@@ -2,6 +2,8 @@
 
 namespace PrimalEditor.Components
 {
+	interface IMSComponent { }
+
 	[DataContract]
 	abstract class Component : ViewModelBase
 	{
@@ -14,4 +16,7 @@ namespace PrimalEditor.Components
 			Owner = owner;
 		}
 	}
+
+	abstract class MSComponent<T> : ViewModelBase, IMSComponent where T : Component
+	{ }
 }
