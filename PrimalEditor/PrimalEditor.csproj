@@ -12,4 +12,10 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Using Include="System.Collections.ObjectModel" />
+	  <Using Include="System.ComponentModel" />
+	  <Using Include="System.Diagnostics" />
+	</ItemGroup>
+
 </Project>

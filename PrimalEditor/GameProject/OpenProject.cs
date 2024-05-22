@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
-using System.Collections.ObjectModel;
+
 using PrimalEditor.Utilities;
 
 namespace PrimalEditor.GameProject
