@@ -6,9 +6,9 @@ namespace PrimalEditor.GameProject
 	/// <summary>
 	/// Interaction logic for OpenProjectVIew.xaml
 	/// </summary>
-	public partial class OpenProjectVIew : UserControl
+	public partial class OpenProjectView : UserControl
 	{
-		public OpenProjectVIew()
+		public OpenProjectView()
 		{
 			InitializeComponent();
 
