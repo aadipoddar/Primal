@@ -7,7 +7,7 @@ namespace PrimalEditor.Components
 {
 	[DataContract]
 	[KnownType(typeof(Transform))]
-	public class GameEntity : ViewModelBase
+	class GameEntity : ViewModelBase
 	{
 		private bool _isEnabled = true;
 		[DataMember]
