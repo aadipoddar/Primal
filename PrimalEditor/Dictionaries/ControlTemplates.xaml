@@ -4,604 +4,604 @@
                     xmlns:local="clr-namespace:PrimalEditor.Dictionaries"
                     xmlns:utl ="clr-namespace:PrimalEditor.Utilities.Controls">
 
-	<Style TargetType="{x:Type TextBlock}" x:Key="LightTextBlockStyle">
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="HorizontalAlignment" Value="Left"/>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="LightTextBlockStyle">
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
 
-	<Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush4}"/>
-		<Setter Property="SelectionBrush" Value="White"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="HorizontalAlignment" Value="Stretch"/>
-		<Setter Property="Padding" Value="0,2"/>
-	</Style>
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush4}"/>
+        <Setter Property="SelectionBrush" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="0,2"/>
+    </Style>
 
-	<Style TargetType="{x:Type TextBox}" x:Key="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
-		<EventSetter Event="KeyDown" Handler="OnTextBox_KeyDown"/>
-	</Style>
+    <Style TargetType="{x:Type TextBox}" x:Key="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+        <EventSetter Event="KeyDown" Handler="OnTextBox_KeyDown"/>
+    </Style>
 
-	<Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle_WithRename" BasedOn="{StaticResource TextBoxStyle}">
-		<EventSetter Event="KeyDown" Handler="OnTextBoxRename_KeyDown"/>
-		<EventSetter Event="LostFocus" Handler="OnTextBoxRename_LostFocus"/>
-	</Style>
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle_WithRename" BasedOn="{StaticResource TextBoxStyle}">
+        <EventSetter Event="KeyDown" Handler="OnTextBoxRename_KeyDown"/>
+        <EventSetter Event="LostFocus" Handler="OnTextBoxRename_LostFocus"/>
+    </Style>
 
-	<Style x:Key="FocusVisual">
-		<Setter Property="Control.Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{StaticResource Editor.FontBrush}"/>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{StaticResource Editor.FontBrush}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type Button}">
-		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-		<Setter Property="Background" >
-			<Setter.Value>
-				<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-					<GradientStop Color="{StaticResource Editor.Window.GrayColor5}" Offset="0"/>
-					<GradientStop Color="{StaticResource Editor.Window.GrayColor4}" Offset="1"/>
-				</LinearGradientBrush>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="BorderBrush">
-			<Setter.Value>
-				<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-					<GradientStop Color="{StaticResource Editor.Window.GrayColor6}" Offset="0"/>
-					<GradientStop Color="{StaticResource Editor.Window.GrayColor2}" Offset="1"/>
-				</LinearGradientBrush>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="BorderThickness" Value="0,1"/>
-		<Setter Property="HorizontalContentAlignment" Value="Center"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="HorizontalAlignment" Value="Center"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="Padding" Value="5,3"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Button}">
-					<ControlTemplate.Resources>
-						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Selected.OpacityBrush">
-							<GradientStop Color="White" Offset="0"/>
-							<GradientStop Color="#88ffffff" Offset="1"/>
-						</LinearGradientBrush>
-						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Pressed.OpacityBrush">
-							<GradientStop Color="White" Offset="1"/>
-							<GradientStop Color="#88ffffff" Offset="0"/>
-						</LinearGradientBrush>
-						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Disabled.BackgroundBrush">
-							<GradientStop Color="{StaticResource Editor.Window.GrayColor4}" Offset="0"/>
-							<GradientStop Color="{StaticResource Editor.Window.GrayColor3}" Offset="1"/>
-						</LinearGradientBrush>
-						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Disabled.BorderBrush">
-							<GradientStop Color="{StaticResource Editor.Window.GrayColor5}" Offset="0"/>
-							<GradientStop Color="{StaticResource Editor.Window.GrayColor1}" Offset="1"/>
-						</LinearGradientBrush>
-					</ControlTemplate.Resources>
-					<Grid>
-						<Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{StaticResource Editor.Window.GrayColor5}" Offset="0"/>
+                    <GradientStop Color="{StaticResource Editor.Window.GrayColor4}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{StaticResource Editor.Window.GrayColor6}" Offset="0"/>
+                    <GradientStop Color="{StaticResource Editor.Window.GrayColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="BorderThickness" Value="0,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5,3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Selected.OpacityBrush">
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="#88ffffff" Offset="1"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Pressed.OpacityBrush">
+                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="#88ffffff" Offset="0"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Disabled.BackgroundBrush">
+                            <GradientStop Color="{StaticResource Editor.Window.GrayColor4}" Offset="0"/>
+                            <GradientStop Color="{StaticResource Editor.Window.GrayColor3}" Offset="1"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Button.Disabled.BorderBrush">
+                            <GradientStop Color="{StaticResource Editor.Window.GrayColor5}" Offset="0"/>
+                            <GradientStop Color="{StaticResource Editor.Window.GrayColor1}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
                                     BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true" CornerRadius="3"/>
-						<Border x:Name="borderSelected" SnapsToDevicePixels="true" CornerRadius="3" BorderThickness="0" BorderBrush="Transparent"/>
-						<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        <Border x:Name="borderSelected" SnapsToDevicePixels="true" CornerRadius="3" BorderThickness="0" BorderBrush="Transparent"/>
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-					</Grid>
+                    </Grid>
 
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsDefaulted" Value="true">
-							<Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-							<Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Selected.OpacityBrush}"/>
-						</Trigger>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
-							<Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-							<Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Selected.OpacityBrush}"/>
-						</Trigger>
-						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
-							<Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-							<Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Pressed.OpacityBrush}"/>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="false">
-							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Editor.Disabled.FontBrush}"/>
-							<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.BackgroundBrush}"/>
-							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.BorderBrush}"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+                            <Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Selected.OpacityBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+                            <Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+                            <Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Selected.OpacityBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+                            <Setter Property="Background" TargetName="borderSelected" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+                            <Setter Property="OpacityMask" TargetName="borderSelected" Value="{StaticResource Button.Pressed.OpacityBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Editor.Disabled.FontBrush}"/>
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.BackgroundBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.BorderBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type ListBoxItem}" x:Key="ListBoxItemStyle">
-		<Setter Property="SnapsToDevicePixels" Value="True" />
-		<Setter Property="Padding" Value="4,2,0,2" />
-		<Setter Property="HorizontalContentAlignment" 
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="ListBoxItemStyle">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="4,2,0,2" />
+        <Setter Property="HorizontalContentAlignment" 
                     Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-		<Setter Property="VerticalContentAlignment"
+        <Setter Property="VerticalContentAlignment"
                     Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="Transparent" />
-		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ListBoxItem}">
-					<Border x:Name="Bd" 
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="Bd" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}" 
                                 Padding="{TemplateBinding Padding}" 
                                 SnapsToDevicePixels="true">
-						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-					</Border>
-					<ControlTemplate.Triggers>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="Selector.IsSelectionActive" Value="False" />
-								<Condition Property="IsSelected" Value="True" />
-							</MultiTrigger.Conditions>
-							<Setter TargetName="Bd" Property="Background" 
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" 
                                         Value="{StaticResource Editor.Window.GrayBrush4}" />
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="Selector.IsSelectionActive" Value="True" />
-								<Condition Property="IsSelected" Value="True" />
-							</MultiTrigger.Conditions>
-							<Setter TargetName="Bd" Property="Background"
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background"
                                         Value="{StaticResource Editor.Selected.BackgroundBrush}" />
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsMouseOver" Value="True" />
-								<Condition Property="Selector.IsSelectionActive" Value="True" />
-								<Condition Property="IsSelected" Value="False" />
-							</MultiTrigger.Conditions>
-							<Setter TargetName="Bd" Property="Background">
-								<Setter.Value>
-									<SolidColorBrush Color="{StaticResource Editor.Selected.BackgroundColor}" Opacity="0.5"/>
-								</Setter.Value>
-							</Setter>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsMouseOver" Value="True" />
-								<Condition Property="Selector.IsSelectionActive" Value="False" />
-								<Condition Property="IsSelected" Value="False" />
-							</MultiTrigger.Conditions>
-							<Setter TargetName="Bd" Property="Background"
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource Editor.Selected.BackgroundColor}" Opacity="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background"
                                         Value="{StaticResource Editor.Window.GrayBrush4}" />
-						</MultiTrigger>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter TargetName="Bd" Property="TextElement.Foreground" 
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="TextElement.Foreground" 
                                         Value="{StaticResource Editor.Disabled.FontBrush}"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type ListBox}">
-		<Setter Property="ItemContainerStyle" Value="{StaticResource ListBoxItemStyle}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush4}"/>
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-		<Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-		<Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ListBox}">
-					<Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ListBoxItemStyle}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush4}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}" Padding="1" SnapsToDevicePixels="true">
-						<ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
-							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-						</ScrollViewer>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="Selector.IsSelectionActive" Value="True">
-							<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="false">
-							<Setter Property="Background" TargetName="Bd" Value="{StaticResource Editor.Window.GrayBrush2}"/>
-							<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Window.GrayBrush4}"/>
-						</Trigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="Selector.IsSelectionActive" Value="False"/>
-								<Condition Property="IsMouseOver" Value="True"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsGrouping" Value="true"/>
-								<Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-						</MultiTrigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Selector.IsSelectionActive" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Editor.Window.GrayBrush2}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Window.GrayBrush4}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsGrouping" Value="true"/>
+                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style x:Key="SimpleButton" TargetType="{x:Type Button}">
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush3}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="HorizontalContentAlignment" Value="Center"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="Padding" Value="0"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Button}">
-					<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+    <Style x:Key="SimpleButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush3}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                             Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-						<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Background" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush5}"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush5}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style x:Key="PrimalWindowStyle" TargetType="{x:Type Window}">
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush1}"/>
-		<Setter Property="WindowChrome.WindowChrome">
-			<Setter.Value>
-				<WindowChrome
+    <Style x:Key="PrimalWindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush1}"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
                     CornerRadius="0"
                     ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
                     GlassFrameThickness="0" CaptionHeight="20"
                     NonClientFrameEdges="None"
                     UseAeroCaptionButtons="False" />
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Window}">
-					<Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
-						<Border.Style>
-							<Style TargetType="Border">
-								<Setter Property="BorderThickness" Value="1"/>
-								<Style.Triggers>
-									<DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
-										<Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters.WindowResizeBorderThickness}}"/>
-									</DataTrigger>
-								</Style.Triggers>
-							</Style>
-						</Border.Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                                        <Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters.WindowResizeBorderThickness}}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
 
-						<Grid>
-							<AdornerDecorator>
-								<ContentPresenter Margin="5,24,5,5"/>
-							</AdornerDecorator>
+                        <Grid>
+                            <AdornerDecorator>
+                                <ContentPresenter Margin="5,24,5,5"/>
+                            </AdornerDecorator>
 
-							<DockPanel VerticalAlignment="Top" LastChildFill="False">
-								<DockPanel.Resources>
-									<Style TargetType="Path">
-										<Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
-										<Setter Property="StrokeThickness" Value="1"/>
-									</Style>
-									<Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
-										<Setter Property="Width" Value="24"/>
-										<Setter Property="Height" Value="14"/>
-										<Setter Property="Margin" Value="0,2,1,0"/>
-										<Setter Property="VerticalAlignment" Value="Top"/>
-										<Setter Property="SnapsToDevicePixels" Value="True"/>
-										<Setter Property="DockPanel.Dock" Value="Right"/>
-										<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-									</Style>
-								</DockPanel.Resources>
-								<TextBlock Margin=" 5,2,0,0" VerticalAlignment="Center"
+                            <DockPanel VerticalAlignment="Top" LastChildFill="False">
+                                <DockPanel.Resources>
+                                    <Style TargetType="Path">
+                                        <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                        <Setter Property="StrokeThickness" Value="1"/>
+                                    </Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
+                                        <Setter Property="Width" Value="24"/>
+                                        <Setter Property="Height" Value="14"/>
+                                        <Setter Property="Margin" Value="0,2,1,0"/>
+                                        <Setter Property="VerticalAlignment" Value="Top"/>
+                                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                        <Setter Property="DockPanel.Dock" Value="Right"/>
+                                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                    </Style>
+                                </DockPanel.Resources>
+                                <TextBlock Margin=" 5,2,0,0" VerticalAlignment="Center"
                                            DockPanel.Dock="Left" FontWeight="Bold"
                                            Foreground="{StaticResource Editor.FontBrush}"
                                            Text="{TemplateBinding Title}"/>
 
-								<Button x:Name="btnClose" Click="OnClose_Button_Click">
-									<Button.Content>
-										<Grid>
-											<Path Data="M1,1.5L 8,8.5" Margin="0"/>
-											<Path Data="M1,8.5L 8,1.5" Margin="0"/>
-										</Grid>
-									</Button.Content>
-								</Button>
+                                <Button x:Name="btnClose" Click="OnClose_Button_Click">
+                                    <Button.Content>
+                                        <Grid>
+                                            <Path Data="M1,1.5L 8,8.5" Margin="0"/>
+                                            <Path Data="M1,8.5L 8,1.5" Margin="0"/>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
 
-								<Button x:Name="btnRestore" Click="OnMaximizeRestore_Button_Click">
-									<Button.Content>
-										<Rectangle Stroke="{StaticResource Editor.FontBrush}" StrokeThickness="1"
+                                <Button x:Name="btnRestore" Click="OnMaximizeRestore_Button_Click">
+                                    <Button.Content>
+                                        <Rectangle Stroke="{StaticResource Editor.FontBrush}" StrokeThickness="1"
                                                    Width="10" Height="8"/>
-									</Button.Content>
-								</Button>
+                                    </Button.Content>
+                                </Button>
 
-								<Button x:Name="btnMinimize" Click="OnMinimize_Button_Click">
-									<Button.Content>
-										<Rectangle Stroke="{StaticResource Editor.FontBrush}" StrokeThickness="1"
+                                <Button x:Name="btnMinimize" Click="OnMinimize_Button_Click">
+                                    <Button.Content>
+                                        <Rectangle Stroke="{StaticResource Editor.FontBrush}" StrokeThickness="1"
                                                    Width="10" Height="1" Margin="0,4,0,0"/>
-									</Button.Content>
-								</Button>
-							</DockPanel>
-						</Grid>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                                    </Button.Content>
+                                </Button>
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style x:Key="PrimalDialogStyle" TargetType="{x:Type Window}">
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush1}"/>
-		<Setter Property="WindowChrome.WindowChrome">
-			<Setter.Value>
-				<WindowChrome
+    <Style x:Key="PrimalDialogStyle" TargetType="{x:Type Window}">
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Selected.BackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush1}"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
                     CornerRadius="0"
                     ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
                     GlassFrameThickness="0" CaptionHeight="20"
                     NonClientFrameEdges="None"
                     UseAeroCaptionButtons="False" />
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Window}">
-					<Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
-						<Border.Style>
-							<Style TargetType="Border">
-								<Setter Property="BorderThickness" Value="1"/>
-								<Style.Triggers>
-									<DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
-										<Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters.WindowResizeBorderThickness}}"/>
-									</DataTrigger>
-								</Style.Triggers>
-							</Style>
-						</Border.Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                                        <Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters.WindowResizeBorderThickness}}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
 
-						<Grid>
-							<AdornerDecorator>
-								<ContentPresenter Margin="5,24,5,5"/>
-							</AdornerDecorator>
+                        <Grid>
+                            <AdornerDecorator>
+                                <ContentPresenter Margin="5,24,5,5"/>
+                            </AdornerDecorator>
 
-							<DockPanel VerticalAlignment="Top" LastChildFill="False">
-								<DockPanel.Resources>
-									<Style TargetType="Path">
-										<Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
-										<Setter Property="StrokeThickness" Value="1"/>
-									</Style>
-									<Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
-										<Setter Property="Width" Value="24"/>
-										<Setter Property="Height" Value="14"/>
-										<Setter Property="Margin" Value="0,2,1,0"/>
-										<Setter Property="VerticalAlignment" Value="Top"/>
-										<Setter Property="SnapsToDevicePixels" Value="True"/>
-										<Setter Property="DockPanel.Dock" Value="Right"/>
-										<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-									</Style>
-								</DockPanel.Resources>
-								<TextBlock Margin=" 5,2,0,0" VerticalAlignment="Center"
+                            <DockPanel VerticalAlignment="Top" LastChildFill="False">
+                                <DockPanel.Resources>
+                                    <Style TargetType="Path">
+                                        <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                        <Setter Property="StrokeThickness" Value="1"/>
+                                    </Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
+                                        <Setter Property="Width" Value="24"/>
+                                        <Setter Property="Height" Value="14"/>
+                                        <Setter Property="Margin" Value="0,2,1,0"/>
+                                        <Setter Property="VerticalAlignment" Value="Top"/>
+                                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                        <Setter Property="DockPanel.Dock" Value="Right"/>
+                                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                    </Style>
+                                </DockPanel.Resources>
+                                <TextBlock Margin=" 5,2,0,0" VerticalAlignment="Center"
                                            DockPanel.Dock="Left" FontWeight="Bold"
                                            Foreground="{StaticResource Editor.FontBrush}"
                                            Text="{TemplateBinding Title}"/>
 
-								<Button x:Name="btnClose" Click="OnClose_Button_Click">
-									<Button.Content>
-										<Grid>
-											<Path Data="M1,1.5L 8,8.5" Margin="0"/>
-											<Path Data="M1,8.5L 8,1.5" Margin="0"/>
-										</Grid>
-									</Button.Content>
-								</Button>
-							</DockPanel>
-						</Grid>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                                <Button x:Name="btnClose" Click="OnClose_Button_Click">
+                                    <Button.Content>
+                                        <Grid>
+                                            <Path Data="M1,1.5L 8,8.5" Margin="0"/>
+                                            <Path Data="M1,8.5L 8,1.5" Margin="0"/>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type utl:NumberBox}" x:Key="{x:Type utl:NumberBox}">
-		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type utl:NumberBox}">
-					<Grid>
-						<TextBlock x:Name="PART_textBlock"
+    <Style TargetType="{x:Type utl:NumberBox}" x:Key="{x:Type utl:NumberBox}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type utl:NumberBox}">
+                    <Grid>
+                        <TextBlock x:Name="PART_textBlock"
                                    Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}"
                                    HorizontalAlignment="Center">
-							<TextBlock.Style>
-								<Style TargetType="{x:Type TextBlock}">
-									<Style.Triggers>
-										<Trigger Property="IsMouseOver" Value="True">
-											<Setter Property="Cursor" Value="SizeWE"/>
-										</Trigger>
-									</Style.Triggers>
-								</Style>
-							</TextBlock.Style>
-						</TextBlock>
-						<TextBox x:Name="PART_textBox" BorderThickness="0" Padding="0"
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="SizeWE"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBox x:Name="PART_textBox" BorderThickness="0" Padding="0"
                                  Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=Explicit}"
                                  Foreground="{TemplateBinding Foreground}" Visibility="Collapsed"
                                  Style="{StaticResource TextBoxStyle_WithRename}" HorizontalContentAlignment="Center"
                                  HorizontalAlignment="Center"/>
-					</Grid>
-					<ControlTemplate.Triggers>
-						<DataTrigger Binding="{Binding Visibility, ElementName=PART_textBox}" Value="Visible">
-							<Setter Property="Visibility" TargetName="PART_textBlock" Value="Collapsed"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-							<Setter Property="Background" TargetName="PART_textBlock" Value="{StaticResource Editor.Disabled.FontBrush}"/>
-							<Setter Property="ToolTip" TargetName="PART_textBlock" Value="Mixed values"/>
-							<Setter Property="MinWidth" TargetName="PART_textBlock" Value="20"/>
-						</DataTrigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Visibility, ElementName=PART_textBox}" Value="Visible">
+                            <Setter Property="Visibility" TargetName="PART_textBlock" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                            <Setter Property="Background" TargetName="PART_textBlock" Value="{StaticResource Editor.Disabled.FontBrush}"/>
+                            <Setter Property="ToolTip" TargetName="PART_textBlock" Value="Mixed values"/>
+                            <Setter Property="MinWidth" TargetName="PART_textBlock" Value="20"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type utl:ScalarBox}" x:Key="{x:Type utl:ScalarBox}">
-		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-		<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
-		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="ToolTipService.InitialShowDelay" Value="3000"/>
-		<Setter Property="ToolTipService.BetweenShowDelay" Value="1000"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type utl:ScalarBox}">
-					<Border x:Name="border" SnapsToDevicePixels="true" Margin="0,2,0,3"
+    <Style TargetType="{x:Type utl:ScalarBox}" x:Key="{x:Type utl:ScalarBox}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="3000"/>
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="1000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type utl:ScalarBox}">
+                    <Border x:Name="border" SnapsToDevicePixels="true" Margin="0,2,0,3"
                             Background="{TemplateBinding Background}" Padding="5,2"
                             BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10"
                             BorderThickness="{TemplateBinding BorderThickness}">
-						<Grid x:Name="grid" MinWidth="50">
-							<TextBlock x:Name="PART_textBlock"
+                        <Grid x:Name="grid" MinWidth="50">
+                            <TextBlock x:Name="PART_textBlock"
                                    Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}"
                                    HorizontalAlignment="Center">
-								<TextBlock.Style>
-									<Style TargetType="{x:Type TextBlock}">
-										<Style.Triggers>
-											<Trigger Property="IsMouseOver" Value="True">
-												<Setter Property="Cursor" Value="SizeWE"/>
-											</Trigger>
-										</Style.Triggers>
-									</Style>
-								</TextBlock.Style>
-							</TextBlock>
-							<TextBox x:Name="PART_textBox" BorderThickness="0" Padding="0"
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="SizeWE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBox x:Name="PART_textBox" BorderThickness="0" Padding="0"
                                  Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=Explicit}"
                                  Foreground="{TemplateBinding Foreground}" Visibility="Collapsed"
                                  Style="{StaticResource TextBoxStyle_WithRename}" HorizontalContentAlignment="Center"
                                  HorizontalAlignment="Center"/>
-						</Grid>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush6}"/>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Opacity" TargetName="grid" Value="0.5"/>
-						</Trigger>
-						<DataTrigger Binding="{Binding Visibility, ElementName=PART_textBox}" Value="Visible">
-							<Setter Property="Visibility" TargetName="PART_textBlock" Value="Collapsed"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-							<Setter Property="Background" TargetName="PART_textBlock" Value="{StaticResource Editor.Disabled.FontBrush}"/>
-							<Setter Property="ToolTip" TargetName="PART_textBlock" Value="Mixed values"/>
-							<Setter Property="MinWidth" TargetName="PART_textBlock" Value="20"/>
-						</DataTrigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-
-	</Style>
-
-	<Style TargetType="{x:Type utl:VectorBox}" x:Key="{x:Type utl:VectorBox}">
-		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-		<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
-		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type utl:VectorBox}">
-					<ControlTemplate.Resources>
-						<Style TargetType="{x:Type utl:NumberBox}" BasedOn="{StaticResource {x:Type utl:NumberBox}}">
-							<Setter Property="MinWidth" Value="50"/>
-							<Setter Property="ToolTipService.InitialShowDelay" Value="3000"/>
-							<Setter Property="ToolTipService.BetweenShowDelay" Value="1000"/>
-							<Setter Property="Multiplier" Value="{Binding Multiplier,RelativeSource={RelativeSource TemplatedParent}}"/>
-						</Style>
-					</ControlTemplate.Resources>
-					<Border x:Name="border" SnapsToDevicePixels="true" Margin="0,2,0,3"
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush6}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.5"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Visibility, ElementName=PART_textBox}" Value="Visible">
+                            <Setter Property="Visibility" TargetName="PART_textBlock" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                            <Setter Property="Background" TargetName="PART_textBlock" Value="{StaticResource Editor.Disabled.FontBrush}"/>
+                            <Setter Property="ToolTip" TargetName="PART_textBlock" Value="Mixed values"/>
+                            <Setter Property="MinWidth" TargetName="PART_textBlock" Value="20"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+    
+    <Style TargetType="{x:Type utl:VectorBox}" x:Key="{x:Type utl:VectorBox}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush2}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Editor.Window.GrayBrush5}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type utl:VectorBox}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type utl:NumberBox}" BasedOn="{StaticResource {x:Type utl:NumberBox}}">
+                            <Setter Property="MinWidth" Value="50"/>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="3000"/>
+                            <Setter Property="ToolTipService.BetweenShowDelay" Value="1000"/>
+                            <Setter Property="Multiplier" Value="{Binding Multiplier,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="border" SnapsToDevicePixels="true" Margin="0,2,0,3"
                             Background="{TemplateBinding Background}" Padding="5,2"
                             BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10"
                             BorderThickness="{TemplateBinding BorderThickness}">
-						<Grid x:Name="grid">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition x:Name="columnDefinition0"/>
-								<ColumnDefinition x:Name="columnDefinition1"/>
-								<ColumnDefinition x:Name="columnDefinition2"/>
-								<ColumnDefinition x:Name="columnDefinition3"/>
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition x:Name="rowDefinition0"/>
-								<RowDefinition x:Name="rowDefinition1"/>
-								<RowDefinition x:Name="rowDefinition2"/>
-								<RowDefinition x:Name="rowDefinition3"/>
-							</Grid.RowDefinitions>
-							<utl:NumberBox x:Name="nbX" Foreground="{StaticResource Editor.RedBrush}" Value="{Binding X, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="X value"/>
-							<utl:NumberBox x:Name="nbY" Foreground="{StaticResource Editor.GreenBrush}" Value="{Binding Y, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Y value"/>
-							<utl:NumberBox x:Name="nbZ" Foreground="{StaticResource Editor.BlueBrush}" Value="{Binding Z, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Z value"/>
-							<utl:NumberBox x:Name="nbW" Foreground="{StaticResource Editor.FontBrush}" Value="{Binding W, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="W value" Visibility="Collapsed"/>
-						</Grid>
-					</Border>
-					<ControlTemplate.Triggers>
-						<DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource Self}}" Value="Vertical">
-							<Setter Property="Grid.Row" TargetName="nbX" Value="0"/>
-							<Setter Property="Grid.Row" TargetName="nbY" Value="1"/>
-							<Setter Property="Grid.Row" TargetName="nbZ" Value="2"/>
-							<Setter Property="Grid.Row" TargetName="nbW" Value="3"/>
-							<Setter Property="Width" TargetName="columnDefinition1" Value="auto"/>
-							<Setter Property="Width" TargetName="columnDefinition2" Value="auto"/>
-							<Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource Self}}" Value="Horizontal">
-							<Setter Property="Grid.Column" TargetName="nbX" Value="0"/>
-							<Setter Property="Grid.Column" TargetName="nbY" Value="1"/>
-							<Setter Property="Grid.Column" TargetName="nbZ" Value="2"/>
-							<Setter Property="Grid.Column" TargetName="nbW" Value="3"/>
-							<Setter Property="Height" TargetName="rowDefinition1" Value="auto"/>
-							<Setter Property="Height" TargetName="rowDefinition2" Value="auto"/>
-							<Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector2">
-							<Setter Property="Width" TargetName="columnDefinition2" Value="auto"/>
-							<Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
-							<Setter Property="Height" TargetName="rowDefinition2" Value="auto"/>
-							<Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
-							<Setter Property="Visibility" TargetName="nbZ" Value="Collapsed"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector3">
-							<Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
-							<Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector4">
-							<Setter Property="Visibility" TargetName="nbW" Value="Visible"/>
-						</DataTrigger>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush6}"/>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Opacity" TargetName="grid" Value="0.5"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        <Grid x:Name="grid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="columnDefinition0"/>
+                                <ColumnDefinition x:Name="columnDefinition1"/>
+                                <ColumnDefinition x:Name="columnDefinition2"/>
+                                <ColumnDefinition x:Name="columnDefinition3"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="rowDefinition0"/>
+                                <RowDefinition x:Name="rowDefinition1"/>
+                                <RowDefinition x:Name="rowDefinition2"/>
+                                <RowDefinition x:Name="rowDefinition3"/>
+                            </Grid.RowDefinitions>
+                            <utl:NumberBox x:Name="nbX" Foreground="{StaticResource Editor.RedBrush}" Value="{Binding X, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="X value"/>
+                            <utl:NumberBox x:Name="nbY" Foreground="{StaticResource Editor.GreenBrush}" Value="{Binding Y, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Y value"/>
+                            <utl:NumberBox x:Name="nbZ" Foreground="{StaticResource Editor.BlueBrush}" Value="{Binding Z, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Z value"/>
+                            <utl:NumberBox x:Name="nbW" Foreground="{StaticResource Editor.FontBrush}" Value="{Binding W, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="W value" Visibility="Collapsed"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource Self}}" Value="Vertical">
+                            <Setter Property="Grid.Row" TargetName="nbX" Value="0"/>
+                            <Setter Property="Grid.Row" TargetName="nbY" Value="1"/>
+                            <Setter Property="Grid.Row" TargetName="nbZ" Value="2"/>
+                            <Setter Property="Grid.Row" TargetName="nbW" Value="3"/>
+                            <Setter Property="Width" TargetName="columnDefinition1" Value="auto"/>
+                            <Setter Property="Width" TargetName="columnDefinition2" Value="auto"/>
+                            <Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource Self}}" Value="Horizontal">
+                            <Setter Property="Grid.Column" TargetName="nbX" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="nbY" Value="1"/>
+                            <Setter Property="Grid.Column" TargetName="nbZ" Value="2"/>
+                            <Setter Property="Grid.Column" TargetName="nbW" Value="3"/>
+                            <Setter Property="Height" TargetName="rowDefinition1" Value="auto"/>
+                            <Setter Property="Height" TargetName="rowDefinition2" Value="auto"/>
+                            <Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector2">
+                            <Setter Property="Width" TargetName="columnDefinition2" Value="auto"/>
+                            <Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
+                            <Setter Property="Height" TargetName="rowDefinition2" Value="auto"/>
+                            <Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
+                            <Setter Property="Visibility" TargetName="nbZ" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector3">
+                            <Setter Property="Width" TargetName="columnDefinition3" Value="auto"/>
+                            <Setter Property="Height" TargetName="rowDefinition3" Value="auto"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding VectorType, RelativeSource={RelativeSource Self}}" Value="Vector4">
+                            <Setter Property="Visibility" TargetName="nbW" Value="Visible"/>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Editor.Window.GrayBrush6}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

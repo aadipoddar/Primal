@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 
 namespace PrimalEditor.Utilities
 {
@@ -6,10 +6,10 @@ namespace PrimalEditor.Utilities
 	/// Interaction logic for UndoRedoView.xaml
 	/// </summary>
 	public partial class UndoRedoView : UserControl
-	{
-		public UndoRedoView()
-		{
-			InitializeComponent();
-		}
-	}
+    {
+        public UndoRedoView()
+        {
+            InitializeComponent();
+        }
+    }
 }
