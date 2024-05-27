@@ -12,7 +12,7 @@ utl::vector<math::v3> scales;
 } // anonymous namespace
 
 component 
-create_transform(const init_info& info, game_entity::entity entity)
+create(const init_info& info, game_entity::entity entity)
 {
     assert(entity.is_valid());
     const id::id_type entity_index{ id::index(entity.get_id()) };
@@ -35,7 +35,7 @@ create_transform(const init_info& info, game_entity::entity entity)
 }
 
 void 
-remove_transform(component c)
+remove(component c)
 {
     assert(c.is_valid());
 }
