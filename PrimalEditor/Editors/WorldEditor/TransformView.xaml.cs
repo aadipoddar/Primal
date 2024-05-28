@@ -5,10 +5,7 @@ using System.Windows.Input;
 
 using PrimalEditor.Components;
 using PrimalEditor.GameProject;
-using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
-using PrimalEditor.Utilities;
-using System.Windows.Input;
 
 namespace PrimalEditor.Editors
 {
