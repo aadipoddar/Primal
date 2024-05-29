@@ -10,7 +10,7 @@ namespace PrimalEditor
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static string PrimalPath { get; private set; } = @"C:\dev\Primal";
+		public static string PrimalPath { get; private set; }
 
 		public MainWindow()
 		{
