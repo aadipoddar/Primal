@@ -1,3 +1,4 @@
+using PrimalEditor.GameDev;
 using PrimalEditor.Utilities;
 
 using System.IO;
@@ -16,7 +17,8 @@ namespace PrimalEditor.GameProject
         [DataMember]
         public string Path { get; private set; }
 
-        public string FullPath => $@"{Path}{Name}\{Name}{Extension}";
+		public string FullPath => $@"{Path}{Name}{Extension}";
+		public string Solution => $@"{Path}{Name}.sln";
 
         [DataMember(Name = "Scenes")]
         private ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
@@ -68,7 +70,8 @@ namespace PrimalEditor.GameProject
 
         public void Unload()
         {
-            UndoRedo.Reset();
+			VisualStudio.CloseVisualStudio();
+			UndoRedo.Reset();
         }
 
         public static void Save(Project project)
