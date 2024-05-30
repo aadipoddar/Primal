@@ -3,53 +3,84 @@
 
 namespace primal::script {
 	namespace {
-		utl::vector<detail::script_ptr>		entity_scripts;
-		utl::vector<id::id_type>			id_mapping;
 
-		utl::vector<id::generation_type>	generations;
-		utl::vector<script_id>				free_ids;
+		utl::vector<detail::script_ptr>     entity_scripts;
+		utl::vector<id::id_type>            id_mapping;
+
+		utl::vector<id::generation_type>    generations;
+		utl::vector<script_id>              free_ids;
 
 		using script_registry = std::unordered_map<size_t, detail::script_creator>;
-
 		script_registry&
-			registery()
+			registry()
 		{
-			// NOTE: We put this static variable in a function because of
-			//		the initialization order of static data. This way we can
-			//		be certain that the data is initialized before accessing it
+			// NOTE: we put this static variable in a function because of
+			//       the initialization order of static data. This way, we can
+			//       be certain that the data is initialized before accessing it.
 			static script_registry reg;
 			return reg;
 		}
 
-		bool exists(script_id id)
+#ifdef USE_WITH_EDITOR
+		utl::vector<std::string>&
+			scrpt_names()
+		{
+			// NOTE: we put this static variable in a function because of
+			//       the initialization order of static data. This way, we can
+			//       be certain that the data is initialized before accessing it.
+			static utl::vector<std::string> names;
+			return names;
+		}
+#endif // USE_WITH_EDITOR
+
+
+		bool
+			exists(script_id id)
 		{
 			assert(id::is_valid(id));
 			const id::id_type index{ id::index(id) };
 			assert(index < generations.size() && id_mapping[index] < entity_scripts.size());
 			assert(generations[index] == id::generation(id));
-			return(generations[index] == id::generation(id)) &&
+			return (generations[index] == id::generation(id)) &&
 				entity_scripts[id_mapping[index]] &&
 				entity_scripts[id_mapping[index]]->is_valid();
 		}
-	} // Anonymous Namespace
+	} // anonymous namespace
 
 	namespace detail {
 
 		u8
 			register_script(size_t tag, script_creator func)
 		{
-			bool result{ registery().insert(script_registry::value_type{tag,func}).second };
+			bool result{ registry().insert(script_registry::value_type{tag, func}).second };
 			assert(result);
 			return result;
 		}
 
-	} // namespace detail 
+		script_creator
+			get_script_creator(size_t tag)
+		{
+			auto script = primal::script::registry().find(tag);
+			assert(script != primal::script::registry().end() && script->first == tag);
+			return script->second;
+		}
+
+#ifdef USE_WITH_EDITOR
+		u8
+			add_script_name(const char* name)
+		{
+			scrpt_names().emplace_back(name);
+			return true;
+		}
+#endif // USE_WITH_EDITOR
+
+	} // namespace detail
 
 	component
 		create(init_info info, game_entity::entity entity)
 	{
 		assert(entity.is_valid());
-		assert(info.scrpt_creator);
+		assert(info.script_creator);
 
 		script_id id{};
 		if (free_ids.size() > id::min_deleted_elements)
@@ -69,7 +100,7 @@ namespace primal::script {
 
 		assert(id::is_valid(id));
 		const id::id_type index{ (id::id_type)entity_scripts.size() };
-		entity_scripts.emplace_back(info.scrpt_creator(entity));
+		entity_scripts.emplace_back(info.script_creator(entity));
 		assert(entity_scripts.back()->get_id() == entity.get_id());
 		id_mapping[id::index(id)] = index;
 		return component{ id };
@@ -87,3 +118,21 @@ namespace primal::script {
 		id_mapping[id::index(id)] = id::invalid_id;
 	}
 }
+
+#ifdef USE_WITH_EDITOR
+#include <atlsafe.h>
+
+extern "C" __declspec(dllexport)
+LPSAFEARRAY
+get_script_names()
+{
+	const u32 size{ (u32)primal::script::scrpt_names().size() };
+	if (!size) return nullptr;
+	CComSafeArray<BSTR> names(size);
+	for (u32 i{ 0 }; i < size; ++i)
+	{
+		names.SetAt(i, A2BSTR_EX(primal::script::scrpt_names()[i].c_str()), false);
+	}
+	return names.Detach();
+}
+#endif // USE_WITH_EDITOR

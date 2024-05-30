@@ -1,3 +1,5 @@
+// Copyright (c) Arash Khatami
+// Distributed under the MIT license. See the LICENSE file in the project root for more information.
 #pragma once
 #include "ComponentsCommon.h"
 
@@ -10,6 +12,6 @@ struct init_info
     f32 scale[3]{1.f, 1.f, 1.f};
 };
 
-component create(const init_info& info, game_entity::entity entity);
+component create(init_info info, game_entity::entity entity);
 void remove(component c);
 }
