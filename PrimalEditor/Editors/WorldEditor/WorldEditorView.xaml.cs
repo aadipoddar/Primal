@@ -1,7 +1,8 @@
+﻿
+using PrimalEditor.GameDev;
+
 using System.Windows;
 using System.Windows.Controls;
-
-using PrimalEditor.GameDev;
 
 namespace PrimalEditor.Editors
 {
@@ -22,9 +23,9 @@ namespace PrimalEditor.Editors
             Focus();
         }
 
-		private void OnNewScript_Button_Click(object sender, RoutedEventArgs e)
-		{
-			new NewScriptDialog().ShowDialog();
-		}
-	}
+        private void OnNewScript_Button_Click(object sender, RoutedEventArgs e)
+        {
+            new NewScriptDialog().ShowDialog();
+        }
+    }
 }

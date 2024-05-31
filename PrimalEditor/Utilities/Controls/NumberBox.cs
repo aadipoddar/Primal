@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -55,8 +55,8 @@ namespace PrimalEditor.Utilities.Controls
             _valueChanged = false;
             e.Handled = true;
             _mouseXStart = e.GetPosition(this).X;
-			Focus();
-		}
+            Focus();
+        }
 
         private void OnTextBlock_Mouse_LBU(object sender, MouseButtonEventArgs e)
         {

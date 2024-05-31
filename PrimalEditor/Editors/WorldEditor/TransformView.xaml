@@ -9,40 +9,40 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:MSTransform, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
-	<UserControl.Resources>
-		<Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LightTextBlockStyle}"/>
-	</UserControl.Resources>
-	<local:ComponentView Header="Transform">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="78"/>
-				<ColumnDefinition />
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LightTextBlockStyle}"/>
+    </UserControl.Resources>
+    <local:ComponentView Header="Transform">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="78"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-			<TextBlock Text="Position" Grid.Column="0" Grid.Row="0"/>
-			<utl:VectorBox X="{Binding PosX}" Y="{Binding PosY}" Z="{Binding PosZ}" Grid.Column="1" Grid.Row="0"
+            <TextBlock Text="Position" Grid.Column="0" Grid.Row="0"/>
+            <utl:VectorBox X="{Binding PosX}" Y="{Binding PosY}" Z="{Binding PosZ}" Grid.Column="1" Grid.Row="0"
                            PreviewMouseLeftButtonDown="OnPosition_VectorBox_PreviewMouse_LBD"
                            PreviewMouseLeftButtonUp="OnPosition_VectorBox_PreviewMouse_LBU"
                            LostKeyboardFocus="OnPosition_VectorBox_LostKeyboardFocus"/>
 
-			<TextBlock Text="Rotation" Grid.Column="0" Grid.Row="1"/>
-			<utl:VectorBox X="{Binding RotX}" Y="{Binding RotY}" Z="{Binding RotZ}" Grid.Column="1" Grid.Row="1"
+            <TextBlock Text="Rotation" Grid.Column="0" Grid.Row="1"/>
+            <utl:VectorBox X="{Binding RotX}" Y="{Binding RotY}" Z="{Binding RotZ}" Grid.Column="1" Grid.Row="1"
                            PreviewMouseLeftButtonDown="OnRotation_VectorBox_PreviewMouse_LBD"
                            PreviewMouseLeftButtonUp="OnRotation_VectorBox_PreviewMouse_LBU"
                            LostKeyboardFocus="OnRotation_VectorBox_LostKeyboardFocus"/>
 
-			<TextBlock Text="Scale" Grid.Column="0" Grid.Row="2"/>
-			<utl:VectorBox X="{Binding ScaleX}" Y="{Binding ScaleY}" Z="{Binding ScaleZ}" Grid.Column="1" Grid.Row="2"
+            <TextBlock Text="Scale" Grid.Column="0" Grid.Row="2"/>
+            <utl:VectorBox X="{Binding ScaleX}" Y="{Binding ScaleY}" Z="{Binding ScaleZ}" Grid.Column="1" Grid.Row="2"
                            PreviewMouseLeftButtonDown="OnScale_VectorBox_PreviewMouse_LBD"
                            PreviewMouseLeftButtonUp="OnScale_VectorBox_PreviewMouse_LBU"
                            LostKeyboardFocus="OnScale_VectorBox_LostKeyboardFocus"/>
 
-		</Grid>
-	</local:ComponentView>
+        </Grid>
+    </local:ComponentView>
 </UserControl>

@@ -4,9 +4,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Test.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Test.h" />
     <ClInclude Include="TestEntityComponents.h" />
   </ItemGroup>
 </Project>

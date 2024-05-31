@@ -6,25 +6,25 @@
              xmlns:local="clr-namespace:PrimalEditor.Editors"
              mc:Ignorable="d" x:Name="componentView" MinWidth="300" Margin="0,0,0,1"
              d:DesignHeight="450" d:DesignWidth="800">
-	<UserControl.Style>
-		<Style TargetType="{x:Type UserControl}">
-			<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush3}"/>
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush4}"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-	</UserControl.Style>
-	<Expander IsExpanded="True">
-		<Expander.Style>
-			<Style TargetType="{x:Type Expander}">
-				<Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
-			</Style>
-		</Expander.Style>
-		<Expander.Header>
-			<TextBlock Text="{Binding Header, ElementName=componentView}" FontWeight="Bold"/>
-		</Expander.Header>
-		<ContentPresenter Content="{Binding ComponentContent, ElementName=componentView}" Margin="5"/>
-	</Expander>
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush3}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Editor.Window.GrayBrush4}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <Expander IsExpanded="True">
+        <Expander.Style>
+            <Style TargetType="{x:Type Expander}">
+                <Setter Property="Foreground" Value="{StaticResource Editor.FontBrush}"/>
+            </Style>
+        </Expander.Style>
+        <Expander.Header>
+            <TextBlock Text="{Binding Header, ElementName=componentView}" FontWeight="Bold"/>
+        </Expander.Header>
+        <ContentPresenter Content="{Binding ComponentContent, ElementName=componentView}" Margin="5"/>
+    </Expander>
 </UserControl>

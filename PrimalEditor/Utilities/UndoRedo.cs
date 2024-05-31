@@ -1,3 +1,6 @@
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+
 namespace PrimalEditor.Utilities
 {
 	public interface IUndoRedo

@@ -29,14 +29,14 @@ void erase_unordered(std::vector<T>& v, size_t index)
 #if USE_STL_DEQUE
 #include <deque>
 namespace primal::utl {
-	template<typename T>
-	using deque = std::deque<T>;
+template<typename T>
+using deque = std::deque<T>;
 }
 #endif
 
 
 namespace primal::utl {
 
-	// TODO: implement our own containers
+// TODO: implement our own containers
 
 }

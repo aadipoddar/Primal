@@ -1,6 +1,9 @@
+﻿
 using PrimalEditor.Components;
 using PrimalEditor.Utilities;
 
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Windows.Input;
 

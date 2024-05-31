@@ -1,4 +1,4 @@
-namespace PrimalEditor.Utilities
+﻿namespace PrimalEditor.Utilities
 {
 	public static class ID
     {

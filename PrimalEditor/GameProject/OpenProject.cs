@@ -1,5 +1,8 @@
+﻿
 using PrimalEditor.Utilities;
 
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 
