@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.GameProject;
+﻿using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
 
 using System.Diagnostics;
@@ -211,5 +210,21 @@ namespace PrimalEditor.GameDev
                 }
             }
         }
-    }
+
+		public static void Run(Project project, string configName, bool debug)
+		{
+			if (_vsInstance != null && !IsDebugging() && BuildDone && BuildSucceeded)
+			{
+				_vsInstance.ExecuteCommand(debug ? "Debug.Start" : "Debug.StartWithoutDebugging");
+			}
+		}
+
+		public static void Stop()
+		{
+			if (_vsInstance != null && IsDebugging())
+			{
+				_vsInstance.ExecuteCommand("Debug.StopDebugging");
+			}
+		}
+	}
 }

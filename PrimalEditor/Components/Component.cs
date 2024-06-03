@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Runtime.Serialization;
 
 namespace PrimalEditor.Components
@@ -8,10 +9,11 @@ namespace PrimalEditor.Components
     [DataContract]
     abstract class Component : ViewModelBase
     {
-        public abstract IMSComponent GetMultiselectionComponent(MSEntity msEntity);
-
         [DataMember]
         public GameEntity Owner { get; private set; }
+
+        public abstract IMSComponent GetMultiselectionComponent(MSEntity msEntity);
+        public abstract void WriteToBinary(BinaryWriter bw);
 
         public Component(GameEntity owner)
         {
