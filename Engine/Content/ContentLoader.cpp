@@ -6,6 +6,8 @@
 #if !defined(SHIPPING)
 
 #include <fstream>
+#include <filesystem>
+#include <Windows.h>
 
 namespace primal::content {
 
@@ -74,7 +76,14 @@ namespace primal::content {
 
 	bool load_game()
 	{
-		// Read game.bin and create the entities
+		// set the working directory to the executable path
+		wchar_t path[MAX_PATH];
+		const u32 length{ GetModuleFileName(0,&path[0],MAX_PATH) };
+		if (!length || GetLastError() == ERROR_INSUFFICIENT_BUFFER) return false;
+		std::filesystem::path p{ path };
+		SetCurrentDirectory(p.parent_path().wstring().c_str());
+
+		// read game.bin and create the entities
 		std::fstream game("game.bin", std::ios::in | std::ios::binary);
 		utl::vector<u8> buffer(std::istream_iterator<char>(game), {});
 		assert(buffer.size());
