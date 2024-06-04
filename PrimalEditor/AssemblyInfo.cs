@@ -1,4 +1,3 @@
-
 using System.Windows;
 
 [assembly: ThemeInfo(

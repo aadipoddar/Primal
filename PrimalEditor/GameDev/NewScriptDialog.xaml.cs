@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.GameProject;
+﻿using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
 
 using System.Diagnostics;

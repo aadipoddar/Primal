@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.GameDev;
+﻿using PrimalEditor.GameDev;
 
 using System.Windows;
 using System.Windows.Controls;

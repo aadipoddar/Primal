@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.DllWrappers;
+﻿using PrimalEditor.DllWrappers;
 using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
 

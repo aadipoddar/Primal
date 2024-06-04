@@ -5,7 +5,7 @@ using System.Text;
 namespace PrimalEditor.Components
 {
 	[DataContract]
-	class Script : Component
+    class Script : Component
     {
         private string _name;
         [DataMember]
@@ -24,14 +24,14 @@ namespace PrimalEditor.Components
 
         public override IMSComponent GetMultiselectionComponent(MSEntity msEntity) => new MSScript(msEntity);
 
-		public override void WriteToBinary(BinaryWriter bw)
-		{
+        public override void WriteToBinary(BinaryWriter bw)
+        {
             var nameBytes = Encoding.UTF8.GetBytes(Name);
             bw.Write(nameBytes.Length);
             bw.Write(nameBytes);
-		}
+        }
 
-		public Script(GameEntity owner) : base(owner) { }
+        public Script(GameEntity owner) : base(owner) { }
     }
 
     sealed class MSScript : MSComponent<Script>

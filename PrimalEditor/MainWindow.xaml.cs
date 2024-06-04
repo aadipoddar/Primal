@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.GameProject;
+﻿using PrimalEditor.GameProject;
 
 using System.ComponentModel;
 using System.IO;

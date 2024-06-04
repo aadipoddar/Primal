@@ -1,5 +1,4 @@
-﻿
-using PrimalEditor.Components;
+﻿using PrimalEditor.Components;
 using PrimalEditor.Utilities;
 
 using System.Collections.ObjectModel;

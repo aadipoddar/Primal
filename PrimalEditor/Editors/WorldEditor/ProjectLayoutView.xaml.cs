@@ -1,4 +1,4 @@
-using PrimalEditor.Components;
+﻿using PrimalEditor.Components;
 using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
 
