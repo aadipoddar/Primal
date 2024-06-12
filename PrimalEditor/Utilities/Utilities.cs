@@ -1,24 +1,76 @@
-﻿namespace PrimalEditor.Utilities
+﻿using System.Windows.Threading;
+namespace PrimalEditor.Utilities
 {
 	public static class ID
-    {
-        public static int INVALID_ID => -1;
-        public static bool IsValid(int id) => id != INVALID_ID;
+	{
+		public static int INVALID_ID => -1;
+		public static bool IsValid(int id) => id != INVALID_ID;
+	}
+
+	public static class MathUtil
+	{
+		public static float Epsilon => 0.00001f;
+
+		public static bool IsTheSameAs(this float value, float other)
+		{
+			return Math.Abs(value - other) < Epsilon;
+		}
+
+		public static bool IsTheSameAs(this float? value, float? other)
+		{
+			if (!value.HasValue || !other.HasValue) return false;
+			return Math.Abs(value.Value - other.Value) < Epsilon;
+		}
+	}
+
+	class DelayEventTimerArgs : EventArgs
+	{
+		public bool RepeatEvent { get; set; }
+		public object Data { get; set; }
+
+        public DelayEventTimerArgs(object data)
+        {
+            Data = data;
+        }
     }
 
-    public static class MathUtil
-    {
-        public static float Epsilon => 0.00001f;
+	class DelayEventTimer
+	{
+		private readonly DispatcherTimer _timer;
+		private readonly TimeSpan _delay;
+		private DateTime _lastEventTime = DateTime.Now;
+		private object _data;
 
-        public static bool IsTheSameAs(this float value, float other)
-        {
-            return Math.Abs(value - other) < Epsilon; 
-        }
+		public event EventHandler<DelayEventTimerArgs> Triggered;
 
-        public static bool IsTheSameAs(this float? value, float? other)
+		public void Trigger(object data = null)
+		{
+			_data = data;
+			_lastEventTime = DateTime.Now;
+			_timer.IsEnabled = true;
+		}
+
+		public void Disable()
+		{
+			_timer.IsEnabled = false;
+		}
+
+		private void OnTimerTick(object sender, EventArgs e)
+		{
+			if ((DateTime.Now - _lastEventTime) < _delay) return;
+			var eventArgs = new DelayEventTimerArgs(_data);
+			Triggered?.Invoke(this, eventArgs);
+			_timer.IsEnabled = eventArgs.RepeatEvent;
+		}
+
+		public DelayEventTimer(TimeSpan delay, DispatcherPriority priority = DispatcherPriority.Normal)
         {
-            if (!value.HasValue || !other.HasValue) return false;
-            return Math.Abs(value.Value - other.Value) < Epsilon;
+			_delay = delay;
+			_timer = new DispatcherTimer(priority)
+			{
+				Interval = TimeSpan.FromMilliseconds(delay.TotalMicroseconds * 0.5)
+			};
+			_timer.Tick += OnTimerTick;
         }
-    }
+	}
 }
