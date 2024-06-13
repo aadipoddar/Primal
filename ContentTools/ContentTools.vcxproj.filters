@@ -7,5 +7,6 @@
   <ItemGroup>
     <ClCompile Include="PrimitiveMesh.cpp" />
     <ClCompile Include="Geometry.h" />
+    <ClCompile Include="Geometry.cpp" />
   </ItemGroup>
 </Project>

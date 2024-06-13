@@ -15,6 +15,7 @@
     <ClInclude Include="ToolsCommon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Geometry.h" />
     <ClCompile Include="PrimitiveMesh.cpp" />
   </ItemGroup>

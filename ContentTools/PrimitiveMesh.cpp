@@ -146,7 +146,7 @@ namespace primal::tools {
 		creators[info->type](scene, *info);
 
 		data->settings.calculate_normals = 1;
-		//process_scene(scene, data->settings);
-		//pack_data(scene, *data);
+		process_scene(scene, data->settings);
+		// pack_data(scene, *data);
 	}
 }
