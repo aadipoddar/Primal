@@ -14,7 +14,7 @@ namespace primal::tools {
 		void create_cylinder(scene& scene, const primitive_init_info& info);
 		void create_capsule(scene& scene, const primitive_init_info& info);
 
-		primitive_mesh_creator creators[primitive_mesh_type::count]
+		primitive_mesh_creator creators[]
 		{
 			create_plane,
 			create_cube,
@@ -26,10 +26,8 @@ namespace primal::tools {
 
 		static_assert(_countof(creators) == primitive_mesh_type::count);
 
-		struct axis
-		{
-			enum : u32
-			{
+		struct axis {
+			enum : u32 {
 				x = 0,
 				y = 1,
 				z = 2
@@ -44,10 +42,10 @@ namespace primal::tools {
 			assert(horizontal_index < 3 && vertical_index < 3);
 			assert(horizontal_index != vertical_index);
 
-			const u32 horizontal_count{ clamp(info.segments[horizontal_index],1u,10u) };
-			const u32 vertical_count{ clamp(info.segments[vertical_index],1u,10u) };
+			const u32 horizontal_count{ clamp(info.segments[horizontal_index], 1u, 10u) };
+			const u32 vertical_count{ clamp(info.segments[vertical_index], 1u, 10u) };
 			const f32 horizontal_step{ 1.f / horizontal_count };
-			const f32 vertical_step{ 1.f / vertical_count };
+			const f32 vertical_step{ 1.f / horizontal_count };
 			const f32 u_step{ (u_range.y - u_range.x) / horizontal_count };
 			const f32 v_step{ (v_range.y - v_range.x) / vertical_count };
 
@@ -75,7 +73,7 @@ namespace primal::tools {
 			for (u32 j{ 0 }; j < vertical_count; ++j)
 			{
 				u32 k{ 0 };
-				for (u32 i{ k }; i < vertical_count; ++i)
+				for (u32 i{ k }; i < horizontal_count; ++i)
 				{
 					const u32 index[4]
 					{
@@ -107,33 +105,34 @@ namespace primal::tools {
 			return m;
 		}
 
-		void create_plane(scene& scene, const primitive_init_info& info)
+		void
+			create_plane(scene& scene, const primitive_init_info& info)
 		{
 			lod_group lod{};
-			lod.name = "place";
+			lod.name = "plane";
 			lod.meshes.emplace_back(create_plane(info));
 			scene.lod_groups.emplace_back(lod);
 		}
 
-		void create_cube(scene& scene, const primitive_init_info& info)
-		{
-		}
+		void
+			create_cube(scene& scene, const primitive_init_info& info)
+		{}
 
-		void create_uv_sphere(scene& scene, const primitive_init_info& info)
-		{
-		}
+		void
+			create_uv_sphere(scene& scene, const primitive_init_info& info)
+		{}
 
-		void create_ico_sphere(scene& scene, const primitive_init_info& info)
-		{
-		}
+		void
+			create_ico_sphere(scene& scene, const primitive_init_info& info)
+		{}
 
-		void create_cylinder(scene& scene, const primitive_init_info& info)
-		{
-		}
+		void
+			create_cylinder(scene& scene, const primitive_init_info& info)
+		{}
 
-		void create_capsule(scene& scene, const primitive_init_info& info)
-		{
-		}
+		void
+			create_capsule(scene& scene, const primitive_init_info& info)
+		{}
 
 	} // anonymous namespace
 
@@ -147,6 +146,7 @@ namespace primal::tools {
 
 		data->settings.calculate_normals = 1;
 		process_scene(scene, data->settings);
-		// pack_data(scene, *data);
+		pack_data(scene, *data);
 	}
+
 }
