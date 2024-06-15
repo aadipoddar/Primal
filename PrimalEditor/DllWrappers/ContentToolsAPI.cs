@@ -57,7 +57,7 @@ namespace PrimalEditor.DllWrappers
 
 		[DllImport(_toolsDLL)]
 		private static extern void CreatePrimitiveMesh([In, Out] SceneData data, PrimitiveInitInfo info);
-		public static void CreateCreatePrimitiveMesh(Content.Geometry geometry, PrimitiveInitInfo info)
+		public static void CreatePrimitiveMesh(Content.Geometry geometry, PrimitiveInitInfo info)
 		{
 			Debug.Assert(geometry != null);
 			using var sceneData = new SceneData();
