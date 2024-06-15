@@ -14,6 +14,10 @@
         Title="Primitive Mesh" Height="600" Width="800"
         Style="{StaticResource PrimalDialogStyle}">
 
+	<Window.DataContext>
+		<ed:GeometryEditor />
+	</Window.DataContext>
+
 	<Window.Resources>
 		<ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
 			<ObjectDataProvider.MethodParameters>

@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Xml.Linq;
 using System.Text;
-using WinRT;
+
 using PrimalEditor.Utilities;
 
 namespace PrimalEditor.Content
