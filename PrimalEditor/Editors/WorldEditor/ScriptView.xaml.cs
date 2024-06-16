@@ -6,10 +6,10 @@ namespace PrimalEditor.Editors
 	/// Interaction logic for ScriptView.xaml
 	/// </summary>
 	public partial class ScriptView : UserControl
-    {
-        public ScriptView()
-        {
-            InitializeComponent();
-        }
-    }
+	{
+		public ScriptView()
+		{
+			InitializeComponent();
+		}
+	}
 }

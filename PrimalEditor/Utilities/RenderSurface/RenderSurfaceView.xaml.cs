@@ -50,8 +50,7 @@ namespace PrimalEditor.Utilities
 			return IntPtr.Zero;
 		}
 
-
-		#region IDisposable Support
+		#region IDisposable support
 		private bool _disposedValue;
 		protected virtual void Dispose(bool disposing)
 		{
@@ -68,6 +67,7 @@ namespace PrimalEditor.Utilities
 
 		public void Dispose()
 		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
 			Dispose(disposing: true);
 			GC.SuppressFinalize(this);
 		}

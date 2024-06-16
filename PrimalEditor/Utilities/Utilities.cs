@@ -1,4 +1,5 @@
 ﻿using System.Windows.Threading;
+
 namespace PrimalEditor.Utilities
 {
 	public static class ID
@@ -28,11 +29,11 @@ namespace PrimalEditor.Utilities
 		public bool RepeatEvent { get; set; }
 		public object Data { get; set; }
 
-        public DelayEventTimerArgs(object data)
-        {
-            Data = data;
-        }
-    }
+		public DelayEventTimerArgs(object data)
+		{
+			Data = data;
+		}
+	}
 
 	class DelayEventTimer
 	{
@@ -64,13 +65,14 @@ namespace PrimalEditor.Utilities
 		}
 
 		public DelayEventTimer(TimeSpan delay, DispatcherPriority priority = DispatcherPriority.Normal)
-        {
+		{
 			_delay = delay;
 			_timer = new DispatcherTimer(priority)
 			{
-				Interval = TimeSpan.FromMilliseconds(delay.TotalMicroseconds * 0.5)
+				Interval = TimeSpan.FromMilliseconds(delay.TotalMilliseconds * 0.5)
 			};
 			_timer.Tick += OnTimerTick;
-        }
+
+		}
 	}
 }

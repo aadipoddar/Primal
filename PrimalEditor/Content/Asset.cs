@@ -10,7 +10,7 @@ namespace PrimalEditor.Content
 		Material,
 		Mesh,
 		Skeleton,
-		Texture
+		Texture,
 	}
 
 	abstract class Asset : ViewModelBase

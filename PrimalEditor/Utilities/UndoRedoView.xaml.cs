@@ -6,10 +6,10 @@ namespace PrimalEditor.Utilities
 	/// Interaction logic for UndoRedoView.xaml
 	/// </summary>
 	public partial class UndoRedoView : UserControl
-    {
-        public UndoRedoView()
-        {
-            InitializeComponent();
-        }
-    }
+	{
+		public UndoRedoView()
+		{
+			InitializeComponent();
+		}
+	}
 }

@@ -1,18 +1,17 @@
-﻿using System.Collections.ObjectModel;
+﻿using PrimalEditor.Content;
+
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-
-using PrimalEditor.Content;
 
 namespace PrimalEditor.Editors
 {
 	// NOTE: the purpose of this class is to enable viewing 3D geometry in WPF while
-	//		we don't have a graphics renderer in the game engine. When we have a
-	//		renderer, this class and the WPF viewer will become obsolete
+	//       we don't have a graphics renderer in the game engine. When we have a
+	//       renderer, this class and the WPF viewer will become obsolete.
 	class MeshRendererVertexData : ViewModelBase
 	{
 		private Brush _specular = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff111111"));
@@ -50,8 +49,8 @@ namespace PrimalEditor.Editors
 	}
 
 	// NOTE: the purpose of this class is to enable viewing 3D geometry in WPF while
-	//		we don't have a graphics renderer in the game engine. When we have a
-	//		renderer, this class and the WPF viewer will become obsolete
+	//       we don't have a graphics renderer in the game engine. When we have a
+	//       renderer, this class and the WPF viewer will become obsolete.
 	class MeshRenderer : ViewModelBase
 	{
 		public ObservableCollection<MeshRendererVertexData> Meshes { get; } = new ObservableCollection<MeshRendererVertexData>();
@@ -79,8 +78,9 @@ namespace PrimalEditor.Editors
 				if (_cameraPosition != value)
 				{
 					_cameraPosition = value;
-					OnPropertyChanged(nameof(CameraPosition));
+					CameraDirection = new Vector3D(-value.X, -value.Y, -value.Z);
 					OnPropertyChanged(nameof(OffsetCameraPosition));
+					OnPropertyChanged(nameof(CameraPosition));
 				}
 			}
 		}
@@ -94,8 +94,8 @@ namespace PrimalEditor.Editors
 				if (_cameraTarget != value)
 				{
 					_cameraTarget = value;
-					OnPropertyChanged(nameof(CameraTarget));
 					OnPropertyChanged(nameof(OffsetCameraPosition));
+					OnPropertyChanged(nameof(CameraTarget));
 				}
 			}
 		}
@@ -162,15 +162,14 @@ namespace PrimalEditor.Editors
 		public MeshRenderer(MeshLOD lod, MeshRenderer old)
 		{
 			Debug.Assert(lod?.Meshes.Any() == true);
-			// Calculate vertex size minus the position and normal vectors;
+			// Calculate vertex size minus the position and normal vectors.
 			var offset = lod.Meshes[0].VertexSize - 3 * sizeof(float) - sizeof(int) - 2 * sizeof(short);
-
 			// In order to set up camera position and target properly, we need to figure out how big
 			// this object is that we're rendering. Hence, we need to know its bounding box.
-			double mixX, minY, mixZ; mixX = minY = mixZ = double.MaxValue;
+			double minX, minY, minZ; minX = minY = minZ = double.MaxValue;
 			double maxX, maxY, maxZ; maxX = maxY = maxZ = double.MinValue;
 			Vector3D avgNormal = new Vector3D();
-			// This is to unlock the packed normals
+			// This is to unpack the packed normals:
 			var intervals = 2.0f / ((1 << 16) - 1);
 
 			foreach (var mesh in lod.Meshes)
@@ -188,11 +187,11 @@ namespace PrimalEditor.Editors
 						vertexData.Positions.Add(new Point3D(posX, posY, posZ));
 
 						// Adjust the bounding box:
-						mixX = Math.Min(mixX, posX); maxX = Math.Max(maxX, posX);
+						minX = Math.Min(minX, posX); maxX = Math.Max(maxX, posX);
 						minY = Math.Min(minY, posY); maxY = Math.Max(maxY, posY);
-						mixZ = Math.Min(mixZ, posZ); maxZ = Math.Max(maxZ, posZ);
+						minZ = Math.Min(minZ, posZ); maxZ = Math.Max(maxZ, posZ);
 
-						// Read Normals
+						// Read normals
 						var nrmX = reader.ReadUInt16() * intervals - 1.0f;
 						var nrmY = reader.ReadUInt16() * intervals - 1.0f;
 						var nrmZ = Math.Sqrt(Math.Clamp(1f - (nrmX * nrmX + nrmY * nrmY), 0f, 1f)) * ((signs & 0x2) - 1f);
@@ -221,7 +220,7 @@ namespace PrimalEditor.Editors
 				Meshes.Add(vertexData);
 			}
 
-			// Set camera target and position
+			// set camera target and position
 			if (old != null)
 			{
 				CameraTarget = old.CameraTarget;
@@ -229,10 +228,10 @@ namespace PrimalEditor.Editors
 			}
 			else
 			{
-				// Compute bounding box direction
-				var width = maxX - mixX;
+				// compute bounding box dimensions
+				var width = maxX - minX;
 				var height = maxY - minY;
-				var depth = maxZ - mixZ;
+				var depth = maxZ - minZ;
 				var radius = new Vector3D(height, width, depth).Length * 1.2;
 				if (avgNormal.Length > 0.8)
 				{
@@ -245,7 +244,7 @@ namespace PrimalEditor.Editors
 					CameraPosition = new Point3D(width, height * 0.5, radius);
 				}
 
-				CameraTarget = new Point3D(mixX + width * 0.5, minY + height * 0.5, mixZ + depth * 0.5);
+				CameraTarget = new Point3D(minX + width * 0.5, minY + height * 0.5, minZ + depth * 0.5);
 			}
 		}
 	}

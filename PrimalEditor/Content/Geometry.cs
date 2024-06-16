@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using PrimalEditor.Utilities;
+
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-
-using PrimalEditor.Utilities;
 
 namespace PrimalEditor.Content
 {
@@ -12,7 +12,7 @@ namespace PrimalEditor.Content
 		Plane,
 		Cube,
 		UvSphere,
-		IcoSpher,
+		IcoSphere,
 		Cylinder,
 		Capsule
 	}
@@ -147,10 +147,10 @@ namespace PrimalEditor.Content
 			_lodGroups.Clear();
 
 			using var reader = new BinaryReader(new MemoryStream(data));
-			//skip scene name string
+			// skip scene name string
 			var s = reader.ReadInt32();
 			reader.BaseStream.Position += s;
-			// get number of LODS
+			// get number of LODs
 			var numLODGroups = reader.ReadInt32();
 			Debug.Assert(numLODGroups > 0);
 
@@ -217,8 +217,8 @@ namespace PrimalEditor.Content
 			mesh.IndexCount = reader.ReadInt32();
 			var lodThreshold = reader.ReadSingle();
 
-			var vertexBufferSize = mesh.VertexSize + mesh.VertexCount;
-			var indexBufferSize = mesh.IndexSize + mesh.IndexCount;
+			var vertexBufferSize = mesh.VertexSize * mesh.VertexCount;
+			var indexBufferSize = mesh.IndexSize * mesh.IndexCount;
 
 			mesh.Vertices = reader.ReadBytes(vertexBufferSize);
 			mesh.Indices = reader.ReadBytes(indexBufferSize);

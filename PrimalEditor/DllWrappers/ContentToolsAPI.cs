@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
+﻿using PrimalEditor.ContentToolsAPIStructs;
+using PrimalEditor.Utilities;
+
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.InteropServices;
-
-using PrimalEditor.ContentToolsAPIStructs;
-using PrimalEditor.Utilities;
 
 namespace PrimalEditor.ContentToolsAPIStructs
 {
@@ -44,7 +44,7 @@ namespace PrimalEditor.ContentToolsAPIStructs
 		public int SegmentX = 1;
 		public int SegmentY = 1;
 		public int SegmentZ = 1;
-		public Vector3 Szie = new Vector3(1f);
+		public Vector3 Size = new Vector3(1f);
 		public int LOD = 0;
 	}
 }
@@ -57,7 +57,7 @@ namespace PrimalEditor.DllWrappers
 
 		[DllImport(_toolsDLL)]
 		private static extern void CreatePrimitiveMesh([In, Out] SceneData data, PrimitiveInitInfo info);
-		public static void CreatePrimitiveMesh(Content.Geometry geometry, PrimitiveInitInfo info)
+		public static void CreatePrimitveMesh(Content.Geometry geometry, PrimitiveInitInfo info)
 		{
 			Debug.Assert(geometry != null);
 			using var sceneData = new SceneData();
@@ -71,7 +71,7 @@ namespace PrimalEditor.DllWrappers
 			}
 			catch (Exception ex)
 			{
-				Logger.Log(MessageType.Error, $"Failed to create {info.Type} primitive mesh");
+				Logger.Log(MessageType.Error, $"failed to create {info.Type} primitive mesh.");
 				Debug.WriteLine(ex.Message);
 			}
 		}
