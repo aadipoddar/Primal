@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\PrimitiveMeshView\Checkermap.png" />
     <None Remove="Resources\PrimitiveMeshView\PlaneTexture.png" />
   </ItemGroup>
 
@@ -53,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\PrimitiveMeshView\Checkermap.png" />
     <Resource Include="Resources\PrimitiveMeshView\PlaneTexture.png" />
   </ItemGroup>
 
