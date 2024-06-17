@@ -56,8 +56,8 @@ namespace PrimalEditor.Content
 						info.SegmentX = (int)xSliderUvSphere.Value;
 						info.SegmentY = (int)ySliderUvSphere.Value;
 						info.Size.X = Value(xScalarBoxUvSphere, 0.001f);
-						info.Size.Y = Value(xScalarBoxUvSphere, 0.001f);
-						info.Size.Z = Value(xScalarBoxUvSphere, 0.001f);
+						info.Size.Y = Value(yScalarBoxUvSphere, 0.001f);
+						info.Size.Z = Value(zScalarBoxUvSphere, 0.001f);
 						smoothingAngle = (int)angleSliderUvSphere.Value;
 					}
 					break;
