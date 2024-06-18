@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "GraphicsPlatformInterface.h"
+#include "Direct3D12/D3D12Interface.h"
 
 namespace primal::graphics {
 	namespace {
@@ -15,15 +16,17 @@ namespace primal::graphics {
 					d3d12::get_platform_interface(gfx);
 					break;
 				default:
-					break;
+					return false;
 			}
+			return true;
 		}
 
 	} // anonymous namespace
 
-	bool initialize(graphics_platform platform)
+	bool
+		initialize(graphics_platform platform)
 	{
-		return set_platform_interface(platform);
+		return set_platform_interface(platform) && gfx.initialize();
 	}
 
 	void shutdown()
