@@ -1,9 +1,8 @@
-#ifdef TEST_RENDERER
-
 #include "..\Platform\PlatformTypes.h"
 #include "..\Platform\Platform.h"
 #include "..\Graphics\Renderer.h"
 #include "TestRenderer.h"
+#ifdef TEST_RENDERER
 
 using namespace primal;
 
@@ -80,6 +79,7 @@ void
 engine_test::run()
 {
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	graphics::render();
 }
 
 void
