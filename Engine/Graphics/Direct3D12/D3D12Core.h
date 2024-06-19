@@ -17,4 +17,6 @@ namespace primal::graphics::d3d12::core {
 		}
 	}
 
+	ID3D12Device *const device();
+
 }
