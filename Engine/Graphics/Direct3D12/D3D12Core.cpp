@@ -1,5 +1,6 @@
 #include "D3D12Core.h"
 #include "D3D12Resources.h"
+#include "D3D12Surface.h"
 
 using namespace Microsoft::WRL;
 
@@ -174,6 +175,7 @@ namespace primal::graphics::d3d12::core {
 		u32                         deferred_releases_flag[frame_buffer_count]{};
 		std::mutex                  deferred_releases_mutx{};
 
+		constexpr DXGI_FORMAT render_target_format{ DXGI_FORMAT_R8G8B8A8_UNORM_SRGB };
 		constexpr D3D_FEATURE_LEVEL minimum_feature_level{ D3D_FEATURE_LEVEL_11_0 };
 
 		bool
@@ -405,6 +407,21 @@ namespace primal::graphics::d3d12::core {
 
 	ID3D12Device *const
 		device() { return main_device; }
+
+	descriptor_heap&
+		rtv_heap() { return rtv_desc_heap; }
+
+	descriptor_heap&
+		dsv_heap() { return dsv_desc_heap; }
+
+	descriptor_heap&
+		srv_heap() { return srv_desc_heap; }
+
+	descriptor_heap&
+		uav_heap() { return uav_desc_heap; }
+
+	DXGI_FORMAT
+		default_render_target_format() { return render_target_format; }
 
 	u32
 		current_frame_index() { return gfx_command.frame_index(); }
