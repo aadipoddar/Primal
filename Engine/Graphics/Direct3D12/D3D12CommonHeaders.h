@@ -11,7 +11,7 @@
 #pragma comment(lib, "d3d12.lib")
 
 namespace primal::graphics::d3d12 {
-	constexpr u32 frame_buffer_count{ 3 };
+constexpr u32 frame_buffer_count{ 3 };
 }
 
 // Assert that COM call to D3D API succeeded
@@ -54,3 +54,5 @@ if (swprintf_s(full_name, L"%s[%u]", name, n) >0 ){ \
 #define NAME_D3D12_OBJECT(x, name)
 #define NAME_D3D12_OBJECT_INDEXED(x, n, name)
 #endif // _DEBUG
+
+
