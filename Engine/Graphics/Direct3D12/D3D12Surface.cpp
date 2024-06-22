@@ -27,7 +27,7 @@ d3d12_surface::create_swap_chain(IDXGIFactory7* factory, ID3D12CommandQueue* cmd
 
     DXGI_SWAP_CHAIN_DESC1 desc{};
     desc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
-    desc.BufferCount = frame_buffer_count;
+    desc.BufferCount = buffer_count;
     desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     desc.Flags = _allow_tearing ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0;
     desc.Format = to_non_srgb(format);
@@ -48,7 +48,7 @@ d3d12_surface::create_swap_chain(IDXGIFactory7* factory, ID3D12CommandQueue* cmd
 
     _current_bb_index = _swap_chain->GetCurrentBackBufferIndex();
 
-    for (u32 i{ 0 }; i < frame_buffer_count; ++i)
+    for (u32 i{ 0 }; i < buffer_count; ++i)
     {
         _render_target_data[i].rtv = core::rtv_heap().allocate();
     }
@@ -74,7 +74,7 @@ void
 d3d12_surface::finalize()
 {
     // create RTVs for back-buffers
-    for (u32 i{ 0 }; i < frame_buffer_count; ++i)
+    for (u32 i{ 0 }; i < buffer_count; ++i)
     {
         render_target_data& data{ _render_target_data[i] };
         assert(!data.resource);
@@ -94,7 +94,7 @@ d3d12_surface::finalize()
     // set viewport and scissor rect
     _viewport.TopLeftX = 0.f;
     _viewport.TopLeftY = 0.f;
-    _viewport.Width = (float)width;
+    _viewport.Width = (float)width; 
     _viewport.Height = (float)height;
     _viewport.MinDepth = 0.f;
     _viewport.MaxDepth = 1.f;
@@ -105,7 +105,7 @@ d3d12_surface::finalize()
 void
 d3d12_surface::release()
 {
-    for (u32 i{ 0 }; i < frame_buffer_count; ++i)
+    for (u32 i{ 0 }; i < buffer_count; ++i)
     {
         render_target_data& data{ _render_target_data[i] };
         core::release(data.resource);
