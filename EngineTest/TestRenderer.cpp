@@ -1,8 +1,8 @@
-
 #include "..\Platform\PlatformTypes.h"
 #include "..\Platform\Platform.h"
 #include "..\Graphics\Renderer.h"
 #include "TestRenderer.h"
+#include"ShaderCompilation.h"
 #if TEST_RENDERER
 
 using namespace primal;
@@ -78,8 +78,14 @@ destroy_render_surface(graphics::render_surface& surface)
 bool
 engine_test::initialize()
 {
-	bool result{ graphics::initialize(graphics::graphics_platform::direct3d12) };
-	if (!result) return result;
+	while (!compile_shaders())
+	{
+		// Pop up a message box allowing the user to retry compilation
+		if (MessageBox(nullptr, L"Failed to compile engine shaders.", L"Shader Compilation Error", MB_RETRYCANCEL) != IDRETRY)
+			return false;
+	}
+
+	if (!graphics::initialize(graphics::graphics_platform::direct3d12)) return false;
 
 	platform::window_init_info info[]
 	{
@@ -93,7 +99,7 @@ engine_test::initialize()
 	for (u32 i{ 0 }; i < _countof(_surfaces); ++i)
 		create_render_surface(_surfaces[i], info[i]);
 
-	return result;
+	return true;
 }
 
 void

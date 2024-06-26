@@ -4,78 +4,97 @@
 
 
 namespace primal::graphics {
-namespace {
+	namespace {
 
-platform_interface gfx{};
+		// Defines where the compiled engine shaders file is located for each one of the supported APIs.
+		constexpr const char* engine_shader_paths[]{
+			".\\shaders\\d3d12\\shaders.bin",
+			// ".\\shaders\\vulkan\\shaders.bin", etc.
+		};
 
-bool
-set_platform_interface(graphics_platform platform)
-{
-    switch (platform)
-    {
-    case graphics_platform::direct3d12:
-        d3d12::get_platform_interface(gfx);
-        break;
-    default:
-        return false;
-    }
+		platform_interface gfx{};
 
-    return true;
-}
+		bool
+			set_platform_interface(graphics_platform platform)
+		{
+			switch (platform)
+			{
+				case graphics_platform::direct3d12:
+					d3d12::get_platform_interface(gfx);
+					break;
+				default:
+					return false;
+			}
 
-} // anonymous namespace
+			assert(gfx.platform == platform);
+			return true;
+		}
 
-bool
-initialize(graphics_platform platform)
-{
-    return set_platform_interface(platform) && gfx.initialize();
-}
+	} // anonymous namespace
 
-void
-shutdown()
-{
-    gfx.shutdown();
-}
+	bool
+		initialize(graphics_platform platform)
+	{
+		return set_platform_interface(platform) && gfx.initialize();
+	}
 
-surface
-create_surface(platform::window window)
-{
-    return gfx.surface.create(window);
-}
+	void
+		shutdown()
+	{
+		gfx.shutdown();
+	}
 
-void
-remove_surface(surface_id id)
-{
-    assert(id::is_valid(id));
-    gfx.surface.remove(id);
-}
+	const char *
+		get_engine_shaders_path()
+	{
+		return engine_shader_paths[(u32)gfx.platform];
+	}
 
-void
-surface::resize(u32 width, u32 height) const
-{
-    assert(is_valid());
-    gfx.surface.resize(_id, width, height);
-}
+	const char *
+		get_engine_shaders_path(graphics_platform platform)
+	{
+		return engine_shader_paths[(u32)platform];
+	}
 
-u32
-surface::width() const
-{
-    assert(is_valid());
-    return gfx.surface.width(_id);
-}
+	surface
+		create_surface(platform::window window)
+	{
+		return gfx.surface.create(window);
+	}
 
-u32
-surface::height() const
-{
-    assert(is_valid());
-    return gfx.surface.height(_id);
-}
+	void
+		remove_surface(surface_id id)
+	{
+		assert(id::is_valid(id));
+		gfx.surface.remove(id);
+	}
 
-void
-surface::render() const
-{
-    assert(is_valid());
-    gfx.surface.render(_id);
-}
+	void
+		surface::resize(u32 width, u32 height) const
+	{
+		assert(is_valid());
+		gfx.surface.resize(_id, width, height);
+	}
+
+	u32
+		surface::width() const
+	{
+		assert(is_valid());
+		return gfx.surface.width(_id);
+	}
+
+	u32
+		surface::height() const
+	{
+		assert(is_valid());
+		return gfx.surface.height(_id);
+	}
+
+	void
+		surface::render() const
+	{
+		assert(is_valid());
+		gfx.surface.render(_id);
+	}
 
 }
