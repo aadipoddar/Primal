@@ -96,6 +96,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File $(SolutionDir)GetDXC.ps1 $(SolutionDir)packages\DirectXShaderCompiler\
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxcompiler.dll $(OutDir)
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxil.dll $(OutDir)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>If .\packages\DirectXShaderCompiler\ folder doesn't exist or is empty then download the latest release of DXC.</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugEditor|x64'">
     <ClCompile>
@@ -111,6 +119,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File $(SolutionDir)GetDXC.ps1 $(SolutionDir)packages\DirectXShaderCompiler\
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxcompiler.dll $(OutDir)
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxil.dll $(OutDir)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>If .\packages\DirectXShaderCompiler\ folder doesn't exist or is empty then download the latest release of DXC.</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,6 +146,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File $(SolutionDir)GetDXC.ps1 $(SolutionDir)packages\DirectXShaderCompiler\
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxcompiler.dll $(OutDir)
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxil.dll $(OutDir)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>If .\packages\DirectXShaderCompiler\ folder doesn't exist or is empty then download the latest release of DXC.</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseEditor|x64'">
     <ClCompile>
@@ -149,6 +173,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File $(SolutionDir)GetDXC.ps1 $(SolutionDir)packages\DirectXShaderCompiler\
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxcompiler.dll $(OutDir)
+xcopy /Y /D $(SolutionDir)packages\DirectXShaderCompiler\bin\x64\dxil.dll $(OutDir)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>If .\packages\DirectXShaderCompiler\ folder doesn't exist or is empty then download the latest release of DXC.</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

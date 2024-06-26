@@ -8,69 +8,69 @@ namespace PrimalEditor.Utilities
 	/// Interaction logic for RenderSurfaceView.xaml
 	/// </summary>
 	public partial class RenderSurfaceView : UserControl, IDisposable
-	{
-		private enum Win32Msg
-		{
-			WM_SIZING = 0x0214,
-			WM_ENTERSIZEMOVE = 0x0231,
-			WM_EXITSIZEMOVE = 0x0232,
-			WM_SIZE = 0x0005,
-		}
+    {
+        private enum Win32Msg
+        {
+            WM_SIZING = 0x0214,
+            WM_ENTERSIZEMOVE = 0x0231,
+            WM_EXITSIZEMOVE = 0x0232,
+            WM_SIZE = 0x0005,
+        }
 
-		private RenderSurfaceHost _host = null;
+        private RenderSurfaceHost _host = null;
 
-		public RenderSurfaceView()
-		{
-			InitializeComponent();
-			Loaded += OnRenderSurfaceViewLoaded;
-		}
+        public RenderSurfaceView()
+        {
+            InitializeComponent();
+            Loaded += OnRenderSurfaceViewLoaded;
+        }
 
-		private void OnRenderSurfaceViewLoaded(object sender, RoutedEventArgs e)
-		{
-			Loaded -= OnRenderSurfaceViewLoaded;
+        private void OnRenderSurfaceViewLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnRenderSurfaceViewLoaded;
 
-			_host = new RenderSurfaceHost(ActualWidth, ActualHeight);
-			_host.MessageHook += new HwndSourceHook(HostMsgFilter);
-			Content = _host;
-		}
+            _host = new RenderSurfaceHost(ActualWidth, ActualHeight);
+            _host.MessageHook += new HwndSourceHook(HostMsgFilter);
+            Content = _host;
+        }
 
-		private IntPtr HostMsgFilter(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-		{
-			switch ((Win32Msg)msg)
-			{
-				case Win32Msg.WM_SIZING: throw new Exception();
-				case Win32Msg.WM_ENTERSIZEMOVE: throw new Exception();
-				case Win32Msg.WM_EXITSIZEMOVE: throw new Exception();
-				case Win32Msg.WM_SIZE:
-					break;
-				default:
-					break;
-			}
+        private IntPtr HostMsgFilter(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch ((Win32Msg)msg)
+            {
+                case Win32Msg.WM_SIZING: throw new Exception();
+                case Win32Msg.WM_ENTERSIZEMOVE: throw new Exception();
+                case Win32Msg.WM_EXITSIZEMOVE: throw new Exception();
+                case Win32Msg.WM_SIZE:
+                    break;
+                default:
+                    break;
+            }
 
-			return IntPtr.Zero;
-		}
+            return IntPtr.Zero;
+        }
 
-		#region IDisposable support
-		private bool _disposedValue;
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!_disposedValue)
-			{
-				if (disposing)
-				{
-					_host.Dispose();
-				}
+        #region IDisposable support
+        private bool _disposedValue;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _host.Dispose();
+                }
 
-				_disposedValue = true;
-			}
-		}
+                _disposedValue = true;
+            }
+        }
 
-		public void Dispose()
-		{
-			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
-		}
-		#endregion
-	}
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+    }
 }

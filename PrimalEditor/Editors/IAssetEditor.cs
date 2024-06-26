@@ -2,10 +2,10 @@
 
 namespace PrimalEditor.Editors
 {
-	interface IAssetEditor
-	{
-		Asset Asset { get; }
+    interface IAssetEditor
+    {
+        Asset Asset { get; }
 
-		void SetAsset(Asset asset);
-	}
+        void SetAsset(Asset asset);
+    }
 }
