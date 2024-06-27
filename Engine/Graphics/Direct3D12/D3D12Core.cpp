@@ -1,6 +1,7 @@
 #include "D3D12Core.h"
 #include "D3D12Surface.h"
 #include "D3D12Shaders.h"
+#include "D3D12GPass.h"
 
 using namespace Microsoft::WRL;
 
@@ -332,7 +333,8 @@ initialize()
     if (!gfx_command.command_queue()) return failed_init();
 
     // initialize modules
-    if (!shaders::initialize())
+    if (!shaders::initialize() &&
+        gpass::initialize())
         return failed_init();
 
     NAME_D3D12_OBJECT(main_device, L"Main D3D12 Device");
@@ -358,6 +360,7 @@ shutdown()
     }
 
     // shutdown modules
+    gpass::shutdown();
     shaders::shutdown();
 
     release(dxgi_factory);

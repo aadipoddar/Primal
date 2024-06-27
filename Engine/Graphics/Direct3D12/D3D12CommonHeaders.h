@@ -3,6 +3,12 @@
 #include "Graphics\Renderer.h"
 #include "Platform\Window.h"
 
+// Skip defination of min/max macros in Wiwndows
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif // !NOMINMAX
+
+
 #include <dxgi1_6.h>
 #include <d3d12.h>
 #include <wrl.h>
