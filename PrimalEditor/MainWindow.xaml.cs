@@ -1,6 +1,8 @@
-﻿using PrimalEditor.GameProject;
+﻿using PrimalEditor.Content;
+using PrimalEditor.GameProject;
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
@@ -79,6 +81,9 @@ namespace PrimalEditor
 			else
 			{
 				Project.Current?.Unload();
+				var project = projectBrowser.DataContext as Project;
+				Debug.Assert(project != null);
+				AssetRegistry.Reset(project.ContentPath);
 				DataContext = projectBrowser.DataContext;
 			}
 		}
