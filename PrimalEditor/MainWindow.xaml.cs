@@ -84,7 +84,7 @@ namespace PrimalEditor
 				var project = projectBrowser.DataContext as Project;
 				Debug.Assert(project != null);
 				AssetRegistry.Reset(project.ContentPath);
-				DataContext = projectBrowser.DataContext;
+				DataContext = project;
 			}
 		}
 	}

@@ -21,8 +21,8 @@ namespace PrimalEditor.Content
 		public string FullPath { get; set; }
 		public string FileName => Path.GetFileNameWithoutExtension(FullPath);
 		public string SourcePath { get; set; }
-        public DateTime RegisterTime { get; set; }
-        public DateTime ImportDate { get; set; }
+		public DateTime RegisterTime { get; set; }
+		public DateTime ImportDate { get; set; }
 		public Guid Guid { get; set; }
 		public byte[] Hash { get; set; }
 	}
@@ -50,7 +50,6 @@ namespace PrimalEditor.Content
 		}
 
 		public string FileName => Path.GetFileNameWithoutExtension(FullPath);
-
 		public Guid Guid { get; protected set; } = Guid.NewGuid();
 		public DateTime ImportDate { get; protected set; }
 		public byte[] Hash { get; protected set; }

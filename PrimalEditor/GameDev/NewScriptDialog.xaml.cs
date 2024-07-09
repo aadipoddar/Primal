@@ -1,6 +1,4 @@
-﻿// Copyright (c) Arash Khatami
-// Distributed under the MIT license. See the LICENSE file in the project root for more information.
-using PrimalEditor.GameProject;
+﻿using PrimalEditor.GameProject;
 using PrimalEditor.Utilities;
 
 using System.Diagnostics;

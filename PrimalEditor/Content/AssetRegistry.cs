@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using PrimalEditor.Utilities;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-
-using PrimalEditor.Utilities;
 
 namespace PrimalEditor.Content
 {
@@ -17,10 +16,11 @@ namespace PrimalEditor.Content
 			IncludeSubdirectories = true,
 			Filter = "",
 			NotifyFilter = NotifyFilters.CreationTime |
-							NotifyFilters.DirectoryName |
-							NotifyFilters.FileName |
-							NotifyFilters.LastWrite
+						   NotifyFilters.DirectoryName |
+						   NotifyFilters.FileName |
+						   NotifyFilters.LastWrite
 		};
+
 
 		public static ReadOnlyObservableCollection<AssetInfo> Assets { get; } = new ReadOnlyObservableCollection<AssetInfo>(_assets);
 
@@ -48,7 +48,7 @@ namespace PrimalEditor.Content
 				var fileInfo = new FileInfo(file);
 
 				if (!_assetDictionary.ContainsKey(file) ||
-					_assetDictionary[file].ImportDate.IsOlder(fileInfo.LastWriteTime))
+					_assetDictionary[file].RegisterTime.IsOlder(fileInfo.LastWriteTime))
 				{
 					var info = Asset.GetAssetInfo(file);
 					Debug.Assert(info != null);
@@ -71,12 +71,6 @@ namespace PrimalEditor.Content
 			}
 		}
 
-		private static void Clear()
-		{
-			_contentWatcher.EnableRaisingEvents = false;
-			_assetDictionary.Clear();
-			_assets.Clear();
-		}
 
 		private static async void OnContentModified(object sender, FileSystemEventArgs e)
 		{
@@ -109,11 +103,19 @@ namespace PrimalEditor.Content
 			}
 		}
 
+		public static void Clear()
+		{
+			_contentWatcher.EnableRaisingEvents = false;
+			_assetDictionary.Clear();
+			_assets.Clear();
+		}
+
 		public static void Reset(string contentFolder)
 		{
 			Clear();
 			Debug.Assert(Directory.Exists(contentFolder));
 			RegisterAllAssets(contentFolder);
+			_contentWatcher.Path = contentFolder;
 			_contentWatcher.EnableRaisingEvents = true;
 		}
 
